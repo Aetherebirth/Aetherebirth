@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dp3quo5hkpksc"]
+
+[node name="World" type="Node2D"]
+position = Vector2(-27, -8)
+
+[node name="Maps" type="Node" parent="."]
