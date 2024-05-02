@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp3quo5hkpksc"]
+[gd_scene load_steps=3 format=3 uid="uid://dp3quo5hkpksc"]
 
 [ext_resource type="PackedScene" uid="uid://bsbda17f1r5kv" path="res://scenes/player.tscn" id="1_4juhf"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_re1t7"]
 
 [node name="World" type="Node2D"]
-position = Vector2(-27, -8)
+script = ExtResource("1_re1t7")
 
 [node name="Maps" type="Node" parent="."]
 
