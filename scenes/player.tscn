@@ -116,9 +116,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o8qrv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37e5d"]
+size = Vector2(10, 4)
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_qdy7k")
 
 [node name="Camera" type="Camera2D" parent="."]
@@ -127,9 +129,11 @@ position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_g4vb0")
 animation = &"still"
 autoplay = "still"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_o8qrv")
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_37e5d")
