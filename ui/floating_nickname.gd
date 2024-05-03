@@ -3,8 +3,8 @@ extends Control
 @export var user_data_events: UserDataEvents
 @export var label: Label
 @export var speaking_indicator: Control
-@export var anchor: Node3D
-@export var offset: Vector3
+@export var anchor: Node2D
+@export var offset: Vector2
 
 var camera: Camera3D
 var user_data: UserData
@@ -38,9 +38,9 @@ func retrieve_user_data(id: int, _user_data: UserData) -> void:
 	
 	user_data = _user_data
 	user_data.nickname_changed.connect(nickname_changed)
-	user_data.speaking_changed.connect(speaking_changed)
+	#user_data.speaking_changed.connect(speaking_changed)
 	nickname_changed(user_data.nickname)
-	speaking_changed(user_data.speaking)
+	#speaking_changed(user_data.speaking)
 
 
 func nickname_changed(nickname: String) -> void:

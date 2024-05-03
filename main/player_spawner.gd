@@ -19,7 +19,7 @@ func _ready() -> void:
 func create_player(id: int):
 	if not multiplayer.is_server(): return
 	
-	var spawn_position = spawn_points.get_spawn_position()
+	var spawn_position = Vector2.ZERO#spawn_points.get_spawn_position()
 	spawn([id, spawn_position])
 	print("Player %d spawned at " % [id] + str(spawn_position))
 

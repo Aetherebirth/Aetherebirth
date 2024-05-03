@@ -4,7 +4,7 @@ class_name UserData
 #signal speaking_changed(speaking: bool)
 signal nickname_changed(nickname: String)
 
-#@export var speaking: bool:
+@export var speaking: bool = false#:
 #	set(value):
 #		speaking = value
 #		speaking_changed.emit(value)

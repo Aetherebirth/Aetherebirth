@@ -7,10 +7,6 @@ class_name Player
 @export var attack_impulse := 10.0
 ## Movement acceleration (how fast character achieve maximum speed)
 @export var acceleration := 6.0
-## Jump impulse
-@export var jump_initial_impulse := 12.0
-## Jump impulse when player keeps pressing jump
-@export var jump_additional_force := 4.5
 ## Player model rotation speed
 @export var rotation_speed := 12.0
 ## Minimum horizontal speed on the ground. This controls when the character's animation tree changes
@@ -22,15 +18,13 @@ class_name Player
 @onready var _synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 
 @onready var _move_direction := Vector2.ZERO
-@onready var _last_strong_direction := Vector2.UP
-@onready var _gravity: float = -30.0
-@onready var _ground_height: float = 0.0
+@onready var _last_strong_direction := Vector2.ZERO
 
 ## Sync properties
 @export var _position: Vector2
 @export var _velocity: Vector2
 @export var _direction: Vector2 = Vector2.ZERO
-@export var _strong_direction: Vector2 = Vector2.UP
+@export var _strong_direction: Vector2 = Vector2.ZERO
 
 var position_before_sync: Vector2
 
@@ -51,11 +45,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): interpolate_client(delta); return
 	
-	# Get input and movement state
-	#var is_just_jumping := Input.is_action_just_pressed("jump") and is_on_floor()
-	#var is_air_boosting := Input.is_action_pressed("jump") and not is_on_floor() and velocity.y > 0.0
-	
-	_move_direction = Input.get_vector("left", "right", "up", "down") * delta * move_speed
+	_move_direction = _get_input() * delta * move_speed
 	
 	
 	# To not orient quickly to the last input, we save a last strong direction,
@@ -63,9 +53,8 @@ func _physics_process(delta: float) -> void:
 	if _move_direction.length() > 0.2:
 		_last_strong_direction = _move_direction.normalized()
 	
-	_orient_character_to_direction(_last_strong_direction, delta)
+	#_orient_character_to_direction(_last_strong_direction, delta)
 	
-	# We separate out the y velocity to not interpolate on the gravity
 	velocity = velocity.lerp(_move_direction * move_speed, acceleration * delta)
 	if _move_direction.length() == 0 and velocity.length() < stopping_speed:
 		velocity = Vector2.ZERO
@@ -110,7 +99,7 @@ func on_synchronized() -> void:
 
 
 func interpolate_client(delta: float) -> void:
-	_orient_character_to_direction(_strong_direction, delta)
+	#_orient_character_to_direction(_strong_direction, delta)
 	
 	if _direction.length() == 0:
 		# Don't interpolate to avoid small jitter when stopping
@@ -126,22 +115,17 @@ func interpolate_client(delta: float) -> void:
 		position += less_misplacement - position_before_sync
 		position_before_sync = less_misplacement
 	
-	velocity.y += _gravity * delta
 	move_and_slide()
 
 
 func _get_input() -> Vector2:
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
-	#var input := Vector2.ZERO
-	# This is to ensure that diagonal input isn't stronger than axis aligned input
-	#input.x = -raw_input.x * sqrt(1.0 - raw_input.y * raw_input.y / 2.0)
-	
 	return raw_input
 
 
-func _orient_character_to_direction(direction: Vector2, delta: float) -> void:
-	pass
+#func _orient_character_to_direction(direction: Vector2, delta: float) -> void:
+#	pass
 
 
 @rpc("any_peer", "call_remote", "reliable")

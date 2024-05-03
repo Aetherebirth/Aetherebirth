@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp3quo5hkpksc"]
+[gd_scene load_steps=2 format=3 uid="uid://dp3quo5hkpksc"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_ad7vv"]
-[ext_resource type="PackedScene" uid="uid://ciqrpd5675boy" path="res://player/player.tscn" id="2_ek8no"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -9,5 +8,3 @@ script = ExtResource("1_ad7vv")
 
 [node name="Maps" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("2_ek8no")]

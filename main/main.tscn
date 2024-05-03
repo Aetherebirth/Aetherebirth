@@ -11,7 +11,9 @@
 
 [node name="Connection" type="Node" parent="."]
 script = ExtResource("1_hlrxf")
-port = 5050
+port = 5000
+max_clients = 4
+host = "127.0.0.1"
 use_localhost_in_editor = true
 
 [node name="UserDataManager" parent="." instance=ExtResource("3_rwvlu")]
@@ -27,9 +29,9 @@ spawn_path = NodePath("../Players")
 script = ExtResource("4_edyrb")
 player_scene = ExtResource("5_wb2xi")
 
-[node name="Player" parent="." instance=ExtResource("5_wb2xi")]
-
 [node name="World" parent="." instance=ExtResource("6_84o0i")]
+
+[node name="Player" parent="World" instance=ExtResource("5_wb2xi")]
 
 [connection signal="disconnected" from="Connection" to="UI" method="show_ui"]
 [connection signal="connect_client" from="UI" to="Connection" method="start_client"]

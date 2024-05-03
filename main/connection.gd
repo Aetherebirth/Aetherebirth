@@ -45,7 +45,7 @@ func start_server() -> void:
 func start_client() -> void:
 	var address = host
 	if OS.has_feature("editor") and use_localhost_in_editor:
-		address = "localhost"
+		address = "127.0.0.1"
 	
 	var peer = ENetMultiplayerPeer.new()
 	var err = peer.create_client(address, port)

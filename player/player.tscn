@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ciqrpd5675boy"]
+[gd_scene load_steps=24 format=3 uid="uid://ciqrpd5675boy"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_pdbxc"]
 [ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="4_pqjwo"]
@@ -8,13 +8,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sr337"]
 font_size = 24
 font_color = Color(1, 1, 1, 0.701961)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjie3"]
-bg_color = Color(0.251, 1, 0, 0.7)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g0ye7"]
 properties/0/path = NodePath(".:_position")
@@ -150,15 +143,16 @@ size = Vector2(10, 4)
 top_level = true
 script = ExtResource("1_pdbxc")
 
-[node name="Nickname" type="Control" parent="." node_paths=PackedStringArray("label", "speaking_indicator")]
+[node name="Nickname" type="Control" parent="." node_paths=PackedStringArray("label", "speaking_indicator", "anchor")]
+z_index = 99
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("6_f61mk")
 user_data_events = ExtResource("7_bgpps")
 label = NodePath("HBoxContainer/Nickname")
-speaking_indicator = NodePath("HBoxContainer/Control/SpeakIndicator")
-offset = Vector3(0, 3, 0)
+speaking_indicator = NodePath("")
+anchor = NodePath("../AnimatedSprite2D")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Nickname"]
 layout_mode = 1
@@ -181,26 +175,6 @@ size_flags_horizontal = 4
 text = "Player One"
 label_settings = SubResource("LabelSettings_sr337")
 horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="Nickname/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 1
-
-[node name="SpeakIndicator" type="Panel" parent="Nickname/HBoxContainer/Control"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -4.0
-offset_right = 13.0
-offset_bottom = 9.0
-grow_vertical = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_bjie3")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_g0ye7")

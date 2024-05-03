@@ -26,7 +26,7 @@ func _ready():
 
 # Check if the player is in a new chunk evevry frame
 # If not, load the new chunks
-func _process(delta):
+func _process(_delta):
 	current_chunk = _get_player_chunk(player.global_position)
 	if (previous_chunk != current_chunk) and (!chunk_loaded):
 		load_chunk()
@@ -52,7 +52,6 @@ func _get_player_chunk(pos):
 #a render distance of 2
 func load_chunk():
 	var render_bounds = (float(render_distance)*2.0)+1.0
-	var loading_coord = []
 	#if x = 0, then x+1 = 1
 	#if render_bounds = 5 (render distance = 2) then 5/2 = 2.5, (round(2.5)) = 3
 	#then 1 - 3 = -2 which is the x coord in the chunk space, this same principle is used
