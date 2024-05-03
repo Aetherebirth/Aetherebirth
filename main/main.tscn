@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7vsfjqwx1gd4"]
+
+[ext_resource type="Script" path="res://main/connection.gd" id="1_hlrxf"]
+[ext_resource type="PackedScene" uid="uid://2ne27phhv0kl" path="res://user_data/user_data_manager.tscn" id="3_rwvlu"]
+[ext_resource type="Script" path="res://main/player_spawner.gd" id="4_edyrb"]
+[ext_resource type="PackedScene" uid="uid://cvl4jsitsxp0u" path="res://ui/ui.tscn" id="4_fvou2"]
+[ext_resource type="PackedScene" uid="uid://ciqrpd5675boy" path="res://player/player.tscn" id="5_wb2xi"]
+[ext_resource type="PackedScene" uid="uid://dp3quo5hkpksc" path="res://world/world.tscn" id="6_84o0i"]
+
+[node name="Main" type="Node"]
+
+[node name="Connection" type="Node" parent="."]
+script = ExtResource("1_hlrxf")
+port = 5050
+use_localhost_in_editor = true
+
+[node name="UserDataManager" parent="." instance=ExtResource("3_rwvlu")]
+
+[node name="UI" parent="." instance=ExtResource("4_fvou2")]
+hide_ui_and_connect = false
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player/player.tscn")
+spawn_path = NodePath("../Players")
+script = ExtResource("4_edyrb")
+player_scene = ExtResource("5_wb2xi")
+
+[node name="Player" parent="." instance=ExtResource("5_wb2xi")]
+
+[node name="World" parent="." instance=ExtResource("6_84o0i")]
+
+[connection signal="disconnected" from="Connection" to="UI" method="show_ui"]
+[connection signal="connect_client" from="UI" to="Connection" method="start_client"]
+[connection signal="start_server" from="UI" to="Connection" method="start_server"]

@@ -88,7 +88,7 @@ func _get_chunk_key(coords: Vector2):
 	
 func _create_chunk(pos: Vector2):
 	if(not active_chunks[dimension].has(pos)):
-		var chunk_path = "res://scenes/chunks/"+dimension+"/"+str(pos.x)+"_"+str(pos.y)+".tscn"
+		var chunk_path = "res://world/chunks/"+dimension+"/"+str(pos.x)+"_"+str(pos.y)+".tscn"
 		if ResourceLoader.exists(chunk_path):
 			var chunk_node: Node2D = load(chunk_path).instantiate()
 			active_chunks[dimension][pos] = chunk_node

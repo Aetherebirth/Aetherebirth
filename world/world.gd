@@ -4,7 +4,7 @@ extends Node2D
 @onready var maps = $Maps
 @onready var player = $Player
 
-@onready var chunk_manager = load("res://scripts/chunkmanager.gd").new(maps, player)
+@onready var chunk_manager = load("res://world/chunkmanager.gd").new(maps, player)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
