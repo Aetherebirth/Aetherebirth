@@ -6,14 +6,14 @@ signal disconnected
 
 static var is_peer_connected: bool
 
-@export var port: int
+@export var default_port: int = 5000
 @export var max_clients: int
-@export var host: String
+@export var default_ip: String = "127.0.0.1"
 @export var use_localhost_in_editor: bool
 
 
 func _ready() -> void:
-	if Connection.is_server(): start_server()
+	if Connection.is_server(): start_server(default_port)
 	connected.connect(func(): Connection.is_peer_connected = true)
 	disconnected.connect(func(): Connection.is_peer_connected = false)
 	disconnected.connect(disconnect_all)
@@ -23,7 +23,7 @@ static func is_server() -> bool:
 	return "--server" in OS.get_cmdline_args()
 
 
-func start_server() -> void:
+func start_server(port) -> void:
 	if max_clients == 0:
 		max_clients = 32
 	
@@ -42,8 +42,8 @@ func start_server() -> void:
 	multiplayer.peer_disconnected.connect(peer_disconnected)
 
 
-func start_client(ip) -> void:
-	var address = host
+func start_client(ip, port) -> void:
+	var address = ip
 	if OS.has_feature("editor") and use_localhost_in_editor:
 		address = "127.0.0.1"
 	

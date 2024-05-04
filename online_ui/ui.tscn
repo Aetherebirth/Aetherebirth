@@ -28,7 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Connection" type="VBoxContainer" parent="MainMenu"]
+[node name="Connection" type="GridContainer" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,22 +41,33 @@ offset_right = 150.0
 offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Server" type="Button" parent="MainMenu/Connection"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Server (debug)"
+columns = 2
 
 [node name="IpInput" type="TextEdit" parent="MainMenu/Connection"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 30
+text = "127.0.0.1"
 placeholder_text = "127.0.0.1"
+
+[node name="PortInput" type="TextEdit" parent="MainMenu/Connection"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "5000"
+placeholder_text = "5000"
+context_menu_enabled = false
 
 [node name="Client" type="Button" parent="MainMenu/Connection"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Join"
+
+[node name="Server" type="Button" parent="MainMenu/Connection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Host"
 
 [node name="InGameUI" type="Control" parent="."]
 layout_mode = 1
@@ -87,5 +98,5 @@ script = ExtResource("4_0te8w")
 user_data_events = ExtResource("5_tmjbr")
 player_panel = ExtResource("6_lta7j")
 
-[connection signal="pressed" from="MainMenu/Connection/Server" to="." method="start_server_emit"]
 [connection signal="pressed" from="MainMenu/Connection/Client" to="." method="connect_client_emit"]
+[connection signal="pressed" from="MainMenu/Connection/Server" to="." method="start_server_emit"]

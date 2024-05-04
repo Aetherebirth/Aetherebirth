@@ -16,20 +16,26 @@ func _ready():
 
 
 func start_server_emit() -> void:
-	start_server.emit()
-	$MainMenu.visible = false
+	var port = $MainMenu/Connection/PortInput.text
+	if(validate_port(port)):
+		start_server.emit(int(port))
+		$MainMenu.visible = false
 
 
 func connect_client_emit() -> void:
 	var ip = $MainMenu/Connection/IpInput.text
-	if(validate_ip(ip)):
-		connect_client.emit(ip)
+	var port = $MainMenu/Connection/PortInput.text
+	if(validate_ip(ip) && validate_port(port)):
+		connect_client.emit(ip, int(port))
 		hide_ui()
 	else:
-		print("%s is not a valid ip !" % ip)
+		print("%s:%d is not a valid ip !" % ip % port)
 
 func validate_ip(ip: String):
 	return ip.is_valid_ip_address()
+	
+func validate_port(port: String):
+	return (1024 <= int(port) && int(port) <= 49151)
 
 func hide_ui() -> void:
 	$MainMenu.visible = false
