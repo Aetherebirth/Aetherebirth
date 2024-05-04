@@ -11,7 +11,7 @@
 
 [node name="Connection" type="Node" parent="."]
 script = ExtResource("1_hlrxf")
-max_clients = 4
+max_clients = 200
 use_localhost_in_editor = true
 
 [node name="UserDataManager" parent="." instance=ExtResource("3_rwvlu")]
