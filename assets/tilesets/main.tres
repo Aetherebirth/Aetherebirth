@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://0ndkcr2fctsd"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://0ndkcr2fctsd"]
 
 [ext_resource type="Texture2D" uid="uid://cdmwgmn5y8e8b" path="res://assets/tilesets/raw/TX Tileset Grass.png" id="1_aqqy5"]
 [ext_resource type="Texture2D" uid="uid://btpblihubp3wo" path="res://assets/tilesets/raw/TX Plant.png" id="2_hq6to"]
@@ -816,25 +816,10 @@ shader_parameter/worley_speed = 0.5
 shader_parameter/edge_and_mask = false
 shader_parameter/alpha_value = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_usm6d"]
-shader = ExtResource("2_kbusv")
-shader_parameter/pixel_mode = true
-shader_parameter/pixel_amount = 360.0
-shader_parameter/distortion = 0.01
-shader_parameter/texture_noise_system = true
-shader_parameter/noise_speed = 1.0
-shader_parameter/noise_direction = -1
-shader_parameter/worley_noise_system = false
-shader_parameter/worley_cell_density = 15.0
-shader_parameter/worley_speed = 2.0
-shader_parameter/edge_and_mask = false
-shader_parameter/alpha_value = 1.0
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aa28t"]
 texture = ExtResource("2_hq6to")
 1:0/size_in_atlas = Vector2i(8, 10)
 1:0/0 = 0
-1:0/0/material = SubResource("ShaderMaterial_usm6d")
 1:0/0/y_sort_origin = 37
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
