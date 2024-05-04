@@ -42,7 +42,7 @@ func start_server() -> void:
 	multiplayer.peer_disconnected.connect(peer_disconnected)
 
 
-func start_client() -> void:
+func start_client(ip) -> void:
 	var address = host
 	if OS.has_feature("editor") and use_localhost_in_editor:
 		address = "127.0.0.1"

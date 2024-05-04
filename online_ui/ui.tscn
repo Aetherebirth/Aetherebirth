@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvl4jsitsxp0u"]
+[gd_scene load_steps=5 format=3 uid="uid://cvl4jsitsxp0u"]
 
-[ext_resource type="Script" path="res://ui/ui.gd" id="1_3uiwb"]
-[ext_resource type="Script" path="res://ui/mouse_mode.gd" id="2_rhohj"]
-[ext_resource type="Script" path="res://ui/player_panel_contiainer.gd" id="4_0te8w"]
+[ext_resource type="Script" path="res://online_ui/ui.gd" id="1_n1aa6"]
+[ext_resource type="Script" path="res://online_ui/player_panel_container.gd" id="4_0te8w"]
 [ext_resource type="Resource" uid="uid://rclnl7v8k722" path="res://user_data/user_data_events.res" id="5_tmjbr"]
-[ext_resource type="PackedScene" uid="uid://dpre6ebljycx4" path="res://ui/player_panel.tscn" id="6_lta7j"]
+[ext_resource type="PackedScene" uid="uid://dpre6ebljycx4" path="res://online_ui/player_panel.tscn" id="6_lta7j"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -18,7 +17,7 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_3uiwb")
+script = ExtResource("1_n1aa6")
 hide_ui_and_connect = true
 
 [node name="MainMenu" type="Control" parent="."]
@@ -29,7 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buttons" type="VBoxContainer" parent="MainMenu"]
+[node name="Connection" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,15 +42,21 @@ offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Server" type="Button" parent="MainMenu/Buttons"]
+[node name="Server" type="Button" parent="MainMenu/Connection"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Server"
+text = "Server (debug)"
 
-[node name="Client" type="Button" parent="MainMenu/Buttons"]
+[node name="IpInput" type="TextEdit" parent="MainMenu/Connection"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Client"
+placeholder_text = "127.0.0.1"
+
+[node name="Client" type="Button" parent="MainMenu/Connection"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Join"
 
 [node name="InGameUI" type="Control" parent="."]
 layout_mode = 1
@@ -61,10 +66,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-
-[node name="MouseMode" type="Control" parent="InGameUI"]
-anchors_preset = 0
-script = ExtResource("2_rhohj")
 
 [node name="MarginContainer" type="MarginContainer" parent="InGameUI"]
 custom_minimum_size = Vector2(350, 0)
@@ -86,5 +87,5 @@ script = ExtResource("4_0te8w")
 user_data_events = ExtResource("5_tmjbr")
 player_panel = ExtResource("6_lta7j")
 
-[connection signal="pressed" from="MainMenu/Buttons/Server" to="." method="start_server_emit"]
-[connection signal="pressed" from="MainMenu/Buttons/Client" to="." method="connect_client_emit"]
+[connection signal="pressed" from="MainMenu/Connection/Server" to="." method="start_server_emit"]
+[connection signal="pressed" from="MainMenu/Connection/Client" to="." method="connect_client_emit"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dpre6ebljycx4"]
 
-[ext_resource type="Script" path="res://ui/player_panel.gd" id="1_hxm32"]
+[ext_resource type="Script" path="res://online_ui/player_panel.gd" id="1_hxm32"]
 [ext_resource type="Resource" uid="uid://rclnl7v8k722" path="res://user_data/user_data_events.res" id="2_y2iyx"]
-[ext_resource type="Script" path="res://ui/change_name.gd" id="3_yfkbo"]
+[ext_resource type="Script" path="res://online_ui/change_name.gd" id="3_yfkbo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmqoe"]
 resource_local_to_scene = true

@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://ciqrpd5675boy"]
+[gd_scene load_steps=26 format=3 uid="uid://ciqrpd5675boy"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_pdbxc"]
+[ext_resource type="Script" path="res://player/cameracontroller.gd" id="4_4nf07"]
 [ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="4_pqjwo"]
-[ext_resource type="Script" path="res://ui/floating_nickname.gd" id="6_f61mk"]
+[ext_resource type="Script" path="res://player/camera.gd" id="5_17a44"]
+[ext_resource type="Script" path="res://online_ui/floating_nickname.gd" id="6_f61mk"]
 [ext_resource type="Resource" uid="uid://rclnl7v8k722" path="res://user_data/user_data_events.res" id="7_bgpps"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sr337"]
@@ -142,8 +144,18 @@ size = Vector2(10, 4)
 [node name="Player" type="CharacterBody2D" groups=["damageables"]]
 top_level = true
 script = ExtResource("1_pdbxc")
+move_speed = null
+attack_impulse = null
+acceleration = null
+rotation_speed = null
+stopping_speed = null
+sync_delta_max = null
+_position = null
+_velocity = null
+_direction = null
+_strong_direction = null
 
-[node name="Nickname" type="Control" parent="." node_paths=PackedStringArray("label", "speaking_indicator", "anchor")]
+[node name="Nickname" type="Control" parent="." node_paths=PackedStringArray("label", "anchor")]
 z_index = 99
 layout_mode = 3
 anchors_preset = 0
@@ -151,7 +163,6 @@ mouse_filter = 1
 script = ExtResource("6_f61mk")
 user_data_events = ExtResource("7_bgpps")
 label = NodePath("HBoxContainer/Nickname")
-speaking_indicator = NodePath("")
 anchor = NodePath("../AnimatedSprite2D")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Nickname"]
@@ -179,10 +190,14 @@ horizontal_alignment = 1
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_g0ye7")
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="CameraController" type="Node2D" parent="."]
+script = ExtResource("4_4nf07")
+
+[node name="Camera" type="Camera2D" parent="CameraController"]
 limit_smoothed = true
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
+script = ExtResource("5_17a44")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true

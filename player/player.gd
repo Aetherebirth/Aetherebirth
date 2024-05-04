@@ -15,6 +15,7 @@ class_name Player
 ## Clamp sync delta for faster interpolation
 @export var sync_delta_max := 0.2
 
+@onready var _camera_controller: CameraController = $CameraController
 @onready var _synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 
 @onready var _move_direction := Vector2.ZERO
@@ -34,7 +35,7 @@ var sync_delta: float
 
 func _ready() -> void:
 	if is_multiplayer_authority():
-		pass
+		_camera_controller.setup(self)
 	else:
 		rotation_speed /= 1.5
 		_synchronizer.delta_synchronized.connect(on_synchronized)

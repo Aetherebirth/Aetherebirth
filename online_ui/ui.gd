@@ -1,7 +1,7 @@
 extends Control
 
 signal start_server
-signal connect_client
+signal connect_client(ip)
 
 @export var hide_ui_and_connect: bool
 
@@ -21,9 +21,15 @@ func start_server_emit() -> void:
 
 
 func connect_client_emit() -> void:
-	connect_client.emit()
-	hide_ui()
+	var ip = $MainMenu/Connection/IpInput.text
+	if(validate_ip(ip)):
+		connect_client.emit(ip)
+		hide_ui()
+	else:
+		print("%s is not a valid ip !" % ip)
 
+func validate_ip(ip: String):
+	return ip.is_valid_ip_address()
 
 func hide_ui() -> void:
 	$MainMenu.visible = false
