@@ -143,8 +143,10 @@ size = Vector2(10, 4)
 
 [node name="Player" type="CharacterBody2D" groups=["damageables"]]
 top_level = true
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_pdbxc")
-move_speed = null
+move_speed = 100.0
 attack_impulse = null
 acceleration = null
 rotation_speed = null
