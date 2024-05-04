@@ -29,6 +29,15 @@ player_scene = ExtResource("5_wb2xi")
 [node name="World" parent="." instance=ExtResource("6_84o0i")]
 
 [node name="Player" parent="World" instance=ExtResource("5_wb2xi")]
+move_speed = 100.0
+attack_impulse = 10.0
+acceleration = 10
+stopping_speed = 1.0
+sync_delta_max = 0.2
+_position = Vector2(0, 0)
+_velocity = Vector2(0, 0)
+_direction = Vector2(0, 0)
+_strong_direction = Vector2(0, 0)
 
 [node name="Online_UI" parent="." instance=ExtResource("4_fvou2")]
 hide_ui_and_connect = false

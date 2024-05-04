@@ -2,13 +2,11 @@ extends CharacterBody2D
 class_name Player
 
 ## Character maximum run speed on the ground.
-@export var move_speed := 200.0
+@export var move_speed := 100.0
 ## Forward impulse after a melee attack.
 @export var attack_impulse := 10.0
 ## Movement acceleration (how fast character achieve maximum speed)
-@export var acceleration := 6.0
-## Player model rotation speed
-@export var rotation_speed := 12.0
+@export var acceleration := 10
 ## Minimum horizontal speed on the ground. This controls when the character's animation tree changes
 ## between the idle and running states.
 @export var stopping_speed := 1.0
@@ -37,7 +35,6 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		_camera_controller.setup(self)
 	else:
-		rotation_speed /= 1.5
 		_synchronizer.delta_synchronized.connect(on_synchronized)
 		_synchronizer.synchronized.connect(on_synchronized)
 		on_synchronized()
