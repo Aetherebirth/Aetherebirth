@@ -331,7 +331,8 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["damageables"]]
-top_level = true
+z_index = 1
+y_sort_enabled = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_pdbxc")

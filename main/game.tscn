@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://ciqrpd5675boy" path="res://player/player.tscn" id="5_wb2xi"]
 [ext_resource type="PackedScene" uid="uid://dp3quo5hkpksc" path="res://world/world.tscn" id="6_84o0i"]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Control"]
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
 
 [node name="Connection" type="Node" parent="."]
 script = ExtResource("1_hlrxf")
@@ -17,6 +20,7 @@ use_localhost_in_editor = true
 [node name="UserDataManager" parent="." instance=ExtResource("3_rwvlu")]
 
 [node name="Players" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://player/player.tscn")
@@ -29,6 +33,7 @@ player_scene = ExtResource("5_wb2xi")
 [node name="Player" parent="World" instance=ExtResource("5_wb2xi")]
 
 [node name="Online_UI" parent="." instance=ExtResource("4_fvou2")]
+layout_mode = 1
 hide_ui_and_connect = false
 
 [connection signal="connect_client" from="Online_UI" to="Connection" method="start_client"]

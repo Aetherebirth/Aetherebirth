@@ -8,3 +8,5 @@ script = ExtResource("1_ad7vv")
 
 [node name="Maps" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="DayNightCycle" type="AnimationPlayer" parent="."]
