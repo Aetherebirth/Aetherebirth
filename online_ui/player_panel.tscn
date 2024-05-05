@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpre6ebljycx4"]
+[gd_scene load_steps=10 format=3 uid="uid://dpre6ebljycx4"]
 
 [ext_resource type="Script" path="res://online_ui/player_panel.gd" id="1_hxm32"]
 [ext_resource type="Resource" uid="uid://rclnl7v8k722" path="res://user_data/user_data_events.res" id="2_y2iyx"]
@@ -19,12 +19,6 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_1pmgd"]
-color = Color(0.509804, 0.509804, 0.509804, 0.501961)
-grow_begin = 0.0
-grow_end = 0.0
-thickness = 3
 
 [sub_resource type="Animation" id="Animation_tisq7"]
 length = 0.001
@@ -79,22 +73,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MarginContainer/VBoxContainer/VolumeSlider:visible")
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/Control/NicknameEdit:placeholder_text")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("MarginContainer/VBoxContainer/Control/NicknameEdit:placeholder_text")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -154,22 +136,10 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MarginContainer/VBoxContainer/VolumeSlider:visible")
+tracks/4/path = NodePath("MarginContainer/VBoxContainer/Control/NicknameEdit:placeholder_text")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("MarginContainer/VBoxContainer/Control/NicknameEdit:placeholder_text")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -182,7 +152,7 @@ _data = {
 "my_panel": SubResource("Animation_2fcr5")
 }
 
-[node name="PlayerPanel" type="Control" node_paths=PackedStringArray("nickname_edit", "volume_slider", "speaking_indicator", "animation_player")]
+[node name="PlayerPanel" type="Control" node_paths=PackedStringArray("nickname_edit", "animation_player")]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 3
 anchors_preset = 0
@@ -191,8 +161,6 @@ offset_bottom = 40.0
 mouse_filter = 1
 script = ExtResource("1_hxm32")
 nickname_edit = NodePath("MarginContainer/VBoxContainer/Control/NicknameEdit")
-volume_slider = NodePath("MarginContainer/VBoxContainer/VolumeSlider")
-speaking_indicator = NodePath("MarginContainer/VBoxContainer/Control/SpeakIndicator")
 animation_player = NodePath("AnimationPlayer")
 user_data_events = ExtResource("2_y2iyx")
 
@@ -258,16 +226,6 @@ offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oc66c")
-
-[node name="VolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-focus_mode = 0
-theme_override_styles/slider = SubResource("StyleBoxLine_1pmgd")
-min_value = 0.001
-max_value = 1.0
-step = 0.01
-value = 0.701
-scrollable = false
 
 [node name="Hints" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 visible = false
