@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2bp5ojowcdyk"]
 
-[ext_resource type="PackedScene" uid="uid://c7vsfjqwx1gd4" path="res://main/game.tscn" id="1_osgw8"]
+[ext_resource type="PackedScene" uid="uid://hfo627la4h2f" path="res://character_selector/character_creator.tscn" id="1_g1su6"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -10,4 +10,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Game" parent="." instance=ExtResource("1_osgw8")]
+[node name="CharacterCreator" parent="." instance=ExtResource("1_g1su6")]

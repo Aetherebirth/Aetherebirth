@@ -25,6 +25,17 @@ class_name Player
 @export var _direction: Vector2 = Vector2.ZERO
 @export var _strong_direction: Vector2 = Vector2.ZERO
 
+# Player skin and name
+@onready var body = $Skeleton/body
+@onready var eyeL = $Skeleton/eyeL
+@onready var eyeR = $Skeleton/eyeR
+@onready var shirt = $Skeleton/shirt
+@onready var pants = $Skeleton/pants
+@onready var shoes = $Skeleton/shoes
+@onready var hair = $Skeleton/hair
+@onready var name_label = $Nickname/HBoxContainer/Nickname
+@onready var animation_player = $AnimationPlayer
+
 var position_before_sync: Vector2
 
 var last_sync_time_ms: int
@@ -32,6 +43,7 @@ var sync_delta: float
 
 
 func _ready() -> void:
+	initialize_player()
 	if is_multiplayer_authority():
 		_camera_controller.setup(self)
 	else:
@@ -44,7 +56,6 @@ func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority(): interpolate_client(delta); return
 	
 	_move_direction = _get_input() * delta * move_speed
-	
 	
 	# To not orient quickly to the last input, we save a last strong direction,
 	# this also ensures a good normalized value for the rotation basis.
@@ -65,6 +76,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		pass
 		#_character_skin.set_moving.rpc(false)
+	if velocity.length() == 0:
+		animation_player.play("idle_down")
+	else:
+		animation_player.play("RESET")
 	
 	var position_before := global_position
 	move_and_slide()
@@ -79,6 +94,29 @@ func _physics_process(delta: float) -> void:
 	
 	set_sync_properties()
 
+func initialize_player():
+	body.texture = Global.body_collection[Global.selected_body]
+	body.modulate = Global.selected_body_color
+	
+	eyeL.texture = Global.eyeL_collection[Global.selected_eyeL]
+	eyeL.modulate = Global.selected_eyeL_color
+
+	eyeR.texture = Global.eyeR_collection[Global.selected_eyeR]
+	eyeR.modulate = Global.selected_eyeR_color
+	
+	shirt.texture = Global.shirt_collection[Global.selected_shirt]
+	shirt.modulate = Global.selected_shirt_color
+	
+	pants.texture = Global.pants_collection[Global.selected_pants]
+	pants.modulate = Global.selected_pants_color
+	
+	shoes.texture = Global.shoes_collection[Global.selected_shoes]
+	shoes.modulate = Global.selected_shoes_color
+
+	hair.texture = Global.hair_collection[Global.selected_hair]
+	hair.modulate = Global.selected_hair_color
+	
+	name_label.text =Global.player_name
 
 func set_sync_properties() -> void:
 	_position = position
