@@ -18,7 +18,7 @@ func _ready():
 func start_server_emit() -> void:
 	var port = $MainMenu/Connection/PortInput.text
 	if(validate_port(port)):
-		start_server.emit(int(port))
+		start_server.emit({port:int(port)})
 		$MainMenu.visible = false
 
 
