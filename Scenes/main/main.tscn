@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2bp5ojowcdyk"]
 
-[ext_resource type="PackedScene" uid="uid://hfo627la4h2f" path="res://Scenes/character_selector/character_creator.tscn" id="1_g1su6"]
+[ext_resource type="PackedScene" uid="uid://bmftebawf54rr" path="res://Scenes/loginscreen/loginscreen.tscn" id="1_a64nd"]
 
 [node name="Main" type="Control"]
 y_sort_enabled = true
@@ -11,4 +11,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterCreator" parent="." instance=ExtResource("1_g1su6")]
+[node name="LoginScreen" parent="." instance=ExtResource("1_a64nd")]
+layout_mode = 1

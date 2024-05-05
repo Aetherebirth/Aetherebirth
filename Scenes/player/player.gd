@@ -164,7 +164,7 @@ func _get_input() -> Vector2:
 #	pass
 
 
-@rpc("any_peer", "call_remote", "reliable")
+#@rpc("any_peer", "call_remote", "reliable")
 func respawn(spawn_position: Vector2) -> void:
 	global_position = spawn_position
 	velocity = Vector2.ZERO

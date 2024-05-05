@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmftebawf54rr"]
+
+[ext_resource type="Script" path="res://Scenes/loginscreen/loginscreen.gd" id="1_sawi7"]
+
+[node name="LoginScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sawi7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 128.0
+offset_right = 736.0
+offset_bottom = 512.0
+color = Color(0.239216, 0.298039, 0.345098, 1)
+
+[node name="LoginInputs" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 192.0
+offset_right = 664.0
+offset_bottom = 400.0
+
+[node name="Title" type="Label" parent="LoginInputs"]
+layout_mode = 2
+text = "Aetherebirth"
+
+[node name="UsernameTitle" type="Label" parent="LoginInputs"]
+layout_mode = 2
+text = "Username"
+
+[node name="Username" type="LineEdit" parent="LoginInputs"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Username"
+clear_button_enabled = true
+
+[node name="PasswordTitle" type="Label" parent="LoginInputs"]
+layout_mode = 2
+text = "Password"
+
+[node name="Password" type="LineEdit" parent="LoginInputs"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Password
+"
+clear_button_enabled = true
+secret = true
+
+[node name="Login" type="Button" parent="LoginInputs"]
+layout_mode = 2
+text = "Login"
+
+[node name="Skip" type="Button" parent="."]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 480.0
+offset_right = 735.0
+offset_bottom = 511.0
+text = "Skip auth (debug)"
+
+[node name="LoginTimeout" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="pressed" from="LoginInputs/Login" to="." method="_on_login_pressed"]
+[connection signal="pressed" from="Skip" to="." method="_on_skip_pressed"]
+[connection signal="timeout" from="LoginTimeout" to="." method="_on_login_timeout"]

@@ -17,8 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
+Gateway="*res://Scenes/singletons/gateway.gd"
+GameServer="*res://Scenes/singletons/gameserver.gd"
 Global="*res://Scenes/global_scripts/global.gd"
+BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 
 [display]
 
