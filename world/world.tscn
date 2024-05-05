@@ -1,10 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://dp3quo5hkpksc"]
+[gd_scene load_steps=4 format=3 uid="uid://dp3quo5hkpksc"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_ad7vv"]
+[ext_resource type="Shader" path="res://assets/shaders/shadows.gdshader" id="2_rx4lm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8ajr"]
+shader = ExtResource("2_rx4lm")
+shader_parameter/shadow_color = Color(0.108, 0.108, 0.108, 0.9)
+shader_parameter/shadow_angle = 46.0
+shader_parameter/shadow_length = 35.0
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ad7vv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_p8ajr")
+offset_left = -448.0
+offset_top = -208.0
+offset_right = 960.0
+offset_bottom = 592.0
+color = Color(1, 1, 1, 0)
 
 [node name="Maps" type="Node2D" parent="."]
 y_sort_enabled = true
