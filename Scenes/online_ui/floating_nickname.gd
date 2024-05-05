@@ -11,11 +11,6 @@ var user_data: UserData
 
 
 func _ready() -> void:
-	if Connection.is_server() or is_multiplayer_authority():
-		set_visible(false)
-		set_process(false)
-		return
-	
 	var id = get_multiplayer_authority()
 	var _user_data = user_data_events.user_data_manager.try_get_user_data(id)
 	if is_instance_valid(_user_data):

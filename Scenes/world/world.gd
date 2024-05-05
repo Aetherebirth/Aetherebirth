@@ -9,7 +9,7 @@ func _ready():
 	start_chunk_manager()
 
 func start_chunk_manager():
-	chunk_manager = load("res://world/chunkmanager.gd").new(maps, player)
+	chunk_manager = load("res://Scenes/world/chunkmanager.gd").new(maps, player)
 
 func _process(delta):
 	if chunk_manager:

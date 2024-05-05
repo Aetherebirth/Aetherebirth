@@ -9,8 +9,6 @@ var user_datas = {} # {Peer ID: UserData}
 
 
 func _ready() -> void:
-	if Connection.is_server(): return
-	
 	user_data_events.set_user_data_manager(self)
 	user_data_spawner.user_data_spawned.connect(user_data_spawned)
 	user_data_spawner.user_data_despawned.connect(user_data_despawned)

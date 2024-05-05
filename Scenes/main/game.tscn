@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7vsfjqwx1gd4"]
 
-[ext_resource type="Script" path="res://main/connection.gd" id="1_hlrxf"]
-[ext_resource type="PackedScene" uid="uid://2ne27phhv0kl" path="res://user_data/user_data_manager.tscn" id="3_rwvlu"]
-[ext_resource type="Script" path="res://main/player_spawner.gd" id="4_edyrb"]
-[ext_resource type="PackedScene" uid="uid://cvl4jsitsxp0u" path="res://online_ui/ui.tscn" id="4_fvou2"]
-[ext_resource type="PackedScene" uid="uid://ciqrpd5675boy" path="res://player/player.tscn" id="5_wb2xi"]
-[ext_resource type="PackedScene" uid="uid://dp3quo5hkpksc" path="res://world/world.tscn" id="6_84o0i"]
+[ext_resource type="Script" path="res://Scenes/main/connection.gd" id="1_hlrxf"]
+[ext_resource type="PackedScene" uid="uid://2ne27phhv0kl" path="res://Scenes/user_data/user_data_manager.tscn" id="3_rwvlu"]
+[ext_resource type="Script" path="res://Scenes/main/player_spawner.gd" id="4_edyrb"]
+[ext_resource type="PackedScene" uid="uid://cvl4jsitsxp0u" path="res://Scenes/online_ui/ui.tscn" id="4_fvou2"]
+[ext_resource type="PackedScene" uid="uid://ciqrpd5675boy" path="res://Scenes/player/player.tscn" id="5_wb2xi"]
+[ext_resource type="PackedScene" uid="uid://dp3quo5hkpksc" path="res://Scenes/world/world.tscn" id="6_84o0i"]
 
 [node name="Game" type="Control"]
 y_sort_enabled = true
@@ -23,7 +23,6 @@ use_localhost_in_editor = true
 y_sort_enabled = true
 
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("../Players")
 script = ExtResource("4_edyrb")
 player_scene = ExtResource("5_wb2xi")

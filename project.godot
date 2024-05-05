@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Aetherebirth"
-run/main_scene="res://main/main.tscn"
+run/main_scene="res://Scenes/main/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
-Global="*res://global_scripts/global.gd"
+Global="*res://Scenes/global_scripts/global.gd"
 
 [display]
 

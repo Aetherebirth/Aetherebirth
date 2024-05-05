@@ -7,19 +7,10 @@ signal connect_client(ip)
 
 
 func _ready():
-	if Connection.is_server(): return
-	
 	if hide_ui_and_connect:
 		connect_client_emit()
 	else:
 		show_ui()
-
-
-func start_server_emit() -> void:
-	var port = $MainMenu/Connection/PortInput.text
-	if(validate_port(port)):
-		start_server.emit({port:int(port)})
-		$MainMenu.visible = false
 
 
 func connect_client_emit() -> void:

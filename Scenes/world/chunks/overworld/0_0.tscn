@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://77u3xk3lhp0t"]
 
 [ext_resource type="TileSet" uid="uid://0ndkcr2fctsd" path="res://assets/tilesets/main.tres" id="1_r1lrj"]
-[ext_resource type="Script" path="res://world/spawn_points.gd" id="2_c0ur6"]
+[ext_resource type="Script" path="res://Scenes/world/spawn_points.gd" id="2_c0ur6"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
