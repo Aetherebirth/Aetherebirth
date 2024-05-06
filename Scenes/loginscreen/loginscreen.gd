@@ -4,6 +4,9 @@ extends Control
 @onready var password_input = $LoginInputs/Password
 @onready var login_button = $LoginInputs/Login
 
+func _ready():
+	Gateway.disconnected.connect(func():login_button.disabled = false)
+
 func _on_login_pressed():
 	if(username_input.text == "" || password_input.text == ""):
 		# Popup
@@ -13,9 +16,8 @@ func _on_login_pressed():
 		var username = username_input.text
 		var pasword = password_input.text
 		print("Attempt to login")
-		Gateway.connectToServer(username, pasword)
-		$LoginTimeout.start()
-
+		Gateway.connectToServer(self, username, pasword)
+		#$LoginTimeout.start()
 
 func _on_login_timeout():
 	login_button.disabled = false

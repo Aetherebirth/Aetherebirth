@@ -10,6 +10,8 @@ static var is_peer_connected: bool
 @export var default_ip: String = "127.0.0.1"
 @export var use_localhost_in_editor: bool
 
+@export var loginscreen: Control
+
 var smapi: = SceneMultiplayer.new()
 
 var username
@@ -23,7 +25,8 @@ func _process(_delta):
 		return
 	smapi.poll()
 	
-func connectToServer(_username, _password):
+func connectToServer(screen, _username, _password):
+	loginscreen = screen
 	smapi = SceneMultiplayer.new()
 	var gateway_peer = ENetMultiplayerPeer.new()
 	
@@ -61,12 +64,6 @@ func _on_connection_disconnect():
 	print("Disconnected from login server")
 	disconnected.emit()
 
-#func requestLogin():
-#	print("Requesting login from gateway")
-#	LoginRequest.rpc_id(1, username, password)
-#	username = ""
-#	password = ""
-
 @rpc("any_peer", "reliable")
 func LoginRequest():
 	print("Requesting login from gateway")
@@ -76,19 +73,16 @@ func LoginRequest():
 
 @rpc("authority", "call_remote", "reliable")
 func ReturnLoginRequest(player_id, results):
-	print("Results received !")
-
-#@rpc("authority", "call_remote", "reliable")
-#func ReturnLoginRequest(results)->void:
-#	print("results received")
-#	if results == true:
-#		print("Connecting to server...")
-#		GameServer.ConnectToServer()
-#	else:
-#		print("Please provide correct username and password")
-#	smapi.connected_to_server.disconnect(_on_connection_succeed)
-#	smapi.server_disconnected.disconnect(_on_connection_disconnect)
-#	smapi.connection_failed.disconnect(_on_connection_fail)
+	print("results received")
+	smapi.connected_to_server.disconnect(_on_connection_succeed)
+	smapi.server_disconnected.disconnect(_on_connection_disconnect)
+	smapi.connection_failed.disconnect(_on_connection_fail)
+	if results == true:
+		print("Connecting to server...")
+		GameServer.ConnectToServer()
+	else:
+		print("Please provide correct username and password")
+	disconnected.emit()
 
 
 
