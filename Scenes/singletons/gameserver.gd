@@ -23,14 +23,23 @@ func ConnectToServer():
 	self.multiplayer.connection_failed.connect(_connection_failed)
 	self.multiplayer.server_disconnected.connect(_disconnected_from_server)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-	
+
+@rpc("any_peer", "reliable")
+func FetchPlayerStats():
+	print("Requesting player stats from server")
+	FetchPlayerStats.rpc_id(1)
+
+@rpc("authority", "call_remote", "reliable")
+func ReturnPlayerStats( results):
+	print(results)
+
+
 func _connection_failed() -> void:
 	print("Connection to game server failed")
 	disconnected.emit()
 func _connected_to_server() -> void:
 	print("Connected to game server")
+	FetchPlayerStats()
+
 func _disconnected_from_server() -> void:
 	print("Disconnected from game server")
