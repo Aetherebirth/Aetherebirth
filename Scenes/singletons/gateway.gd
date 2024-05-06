@@ -14,6 +14,9 @@ static var is_peer_connected: bool
 
 var smapi: = SceneMultiplayer.new()
 
+var cert = load("res://assets/certificate/Aetherebirth_server.crt")
+var dtls_options = TLSOptions.client(cert)
+
 var username
 var password
 
@@ -35,6 +38,7 @@ func connectToServer(screen, _username, _password):
 		address = "127.0.0.1"
 	
 	var err = gateway_peer.create_client(address, default_port)
+	#gateway_peer.host.dtls_client_setup("aetherebirth_server.aetherebirth.fr", dtls_options)
 	if err != OK:
 		print("Cannot connect to gateway. Err: " + str(err))
 		disconnected.emit()
