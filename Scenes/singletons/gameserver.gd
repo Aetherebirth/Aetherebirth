@@ -13,6 +13,7 @@ func _ready():
 	pass # Replace with function body.
 
 func ConnectToServer():
+	get_tree().change_scene_to_file("res://Scenes/character_selector/character_creator.tscn")
 	var network = ENetMultiplayerPeer.new()
 	print("Connecting to the server !")
 	network.create_client(default_ip,default_port)
