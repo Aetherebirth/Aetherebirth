@@ -72,13 +72,14 @@ func LoginRequest():
 	password = ""
 
 @rpc("authority", "call_remote", "reliable")
-func ReturnLoginRequest(player_id, results):
+func ReturnLoginRequest(player_id, results, token):
 	print("results received")
 	smapi.connected_to_server.disconnect(_on_connection_succeed)
 	smapi.server_disconnected.disconnect(_on_connection_disconnect)
 	smapi.connection_failed.disconnect(_on_connection_fail)
 	if results == true:
 		print("Connecting to server...")
+		GameServer.token = token
 		GameServer.ConnectToServer()
 	else:
 		print("Please provide correct username and password")

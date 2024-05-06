@@ -8,9 +8,10 @@ signal disconnected
 @export var default_ip: String = "127.0.0.1"
 @export var use_localhost_in_editor: bool
 
-# Called when the node enters the scene tree for the first time.
+var token
+
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func ConnectToServer():
 	get_tree().change_scene_to_file("res://Scenes/character_selector/character_creator.tscn")
@@ -33,13 +34,27 @@ func FetchPlayerStats():
 func ReturnPlayerStats( results):
 	print(results)
 
+@rpc("authority", "call_remote", "reliable")
+func FetchToken():
+	print("Server is asking for token. Sending...")
+	ReturnToken(token)
+
+@rpc("any_peer", "call_remote", "reliable")
+func ReturnToken(_token):
+	ReturnToken.rpc_id(1, _token)
+
+@rpc("authority", "call_remote", "reliable")
+func ReturnTokenVerificationResults(result):
+	print("Received token verification results: "+str(result))
+	# Switch to selector or back to login
+
 
 func _connection_failed() -> void:
 	print("Connection to game server failed")
 	disconnected.emit()
 func _connected_to_server() -> void:
 	print("Connected to game server")
-	FetchPlayerStats()
+	#FetchPlayerStats()
 
 func _disconnected_from_server() -> void:
 	print("Disconnected from game server")
