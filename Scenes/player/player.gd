@@ -96,25 +96,25 @@ func _physics_process(delta: float) -> void:
 
 func initialize_player():
 	body.texture = Global.body_collection[Global.selected_body]
-	body.modulate = Global.selected_body_color
+	body.modulate = Global.body_color
 	
 	eyeL.texture = Global.eyeL_collection[Global.selected_eyeL]
-	eyeL.modulate = Global.selected_eyeL_color
+	eyeL.modulate = Global.eyeL_color
 
 	eyeR.texture = Global.eyeR_collection[Global.selected_eyeR]
-	eyeR.modulate = Global.selected_eyeR_color
+	eyeR.modulate = Global.eyeR_color
 	
 	shirt.texture = Global.shirt_collection[Global.selected_shirt]
-	shirt.modulate = Global.selected_shirt_color
+	shirt.modulate = Global.shirt_color
 	
 	pants.texture = Global.pants_collection[Global.selected_pants]
-	pants.modulate = Global.selected_pants_color
+	pants.modulate = Global.pants_color
 	
 	shoes.texture = Global.shoes_collection[Global.selected_shoes]
-	shoes.modulate = Global.selected_shoes_color
+	shoes.modulate = Global.shoes_color
 
 	hair.texture = Global.hair_collection[Global.selected_hair]
-	hair.modulate = Global.selected_hair_color
+	hair.modulate = Global.hair_color
 	
 	name_label.text =Global.player_name
 

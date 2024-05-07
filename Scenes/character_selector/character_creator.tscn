@@ -345,7 +345,7 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
 
-[node name="ColorButton" type="Button" parent="CreatorScreen/Menu/Body"]
+[node name="BodyColorButton" type="ColorPickerButton" parent="CreatorScreen/Menu/Body"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -359,6 +359,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
+edit_alpha = false
 
 [node name="Hair" type="ColorRect" parent="CreatorScreen/Menu"]
 layout_mode = 0
@@ -398,7 +399,7 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
 
-[node name="ColorButton" type="Button" parent="CreatorScreen/Menu/Hair"]
+[node name="HairColorButton" type="ColorPickerButton" parent="CreatorScreen/Menu/Hair"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -412,6 +413,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
+edit_alpha = false
 
 [node name="eyeL" type="ColorRect" parent="CreatorScreen/Menu"]
 layout_mode = 0
@@ -466,6 +468,22 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
 
+[node name="EyeLColorButton" type="ColorPickerButton" parent="CreatorScreen/Menu/eyeL"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -50.0
+offset_right = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "--->"
+edit_alpha = false
+
 [node name="eyeR" type="ColorRect" parent="CreatorScreen/Menu"]
 layout_mode = 0
 offset_left = 320.0
@@ -518,6 +536,22 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
+
+[node name="EyeRColorButton" type="ColorPickerButton" parent="CreatorScreen/Menu/eyeR"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -50.0
+offset_right = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "--->"
+edit_alpha = false
 
 [node name="shirt" type="ColorRect" parent="CreatorScreen/Menu"]
 layout_mode = 0
@@ -572,6 +606,22 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
 
+[node name="ShirtColorButton" type="ColorPickerButton" parent="CreatorScreen/Menu/shirt"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -50.0
+offset_right = -75.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "--->"
+edit_alpha = false
+
 [node name="pants" type="ColorRect" parent="CreatorScreen/Menu"]
 layout_mode = 0
 offset_left = 640.0
@@ -610,7 +660,7 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
 
-[node name="ColorButton" type="Button" parent="CreatorScreen/Menu/pants"]
+[node name="PantsColorButton" type="ColorPickerButton" parent="CreatorScreen/Menu/pants"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -624,6 +674,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
+edit_alpha = false
 
 [node name="shoes" type="ColorRect" parent="CreatorScreen/Menu"]
 layout_mode = 0
@@ -663,7 +714,7 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
 
-[node name="ColorButton" type="Button" parent="CreatorScreen/Menu/shoes"]
+[node name="ShoesColorButton" type="ColorPickerButton" parent="CreatorScreen/Menu/shoes"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -677,6 +728,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "--->"
+edit_alpha = false
 
 [node name="ConfirmButton" type="Button" parent="CreatorScreen/Menu"]
 layout_mode = 1
@@ -698,17 +750,20 @@ speed_scale = 0.8
 
 [connection signal="text_changed" from="CreatorScreen/Menu/Details/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/Body/CollectionButton" to="CreatorScreen/Menu/Skeleton/body" method="_on_collection_button_pressed"]
-[connection signal="pressed" from="CreatorScreen/Menu/Body/ColorButton" to="CreatorScreen/Menu/Skeleton/body" method="_on_color_button_pressed"]
+[connection signal="color_changed" from="CreatorScreen/Menu/Body/BodyColorButton" to="CreatorScreen/Menu/Skeleton/body" method="_on_color_button_color_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/Hair/CollectionButton" to="CreatorScreen/Menu/Skeleton/hair" method="_on_collection_button_pressed"]
-[connection signal="pressed" from="CreatorScreen/Menu/Hair/ColorButton" to="CreatorScreen/Menu/Skeleton/hair" method="_on_color_button_pressed"]
+[connection signal="color_changed" from="CreatorScreen/Menu/Hair/HairColorButton" to="CreatorScreen/Menu/Skeleton/hair" method="_on_color_button_color_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/eyeL/CollectionButton" to="CreatorScreen/Menu/Skeleton/eyeL" method="_on_collection_button_pressed"]
 [connection signal="pressed" from="CreatorScreen/Menu/eyeL/ColorButton" to="CreatorScreen/Menu/Skeleton/eyeL" method="_on_color_button_pressed"]
+[connection signal="color_changed" from="CreatorScreen/Menu/eyeL/EyeLColorButton" to="CreatorScreen/Menu/Skeleton/eyeL" method="_on_color_button_color_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/eyeR/CollectionButton" to="CreatorScreen/Menu/Skeleton/eyeR" method="_on_collection_button_pressed"]
 [connection signal="pressed" from="CreatorScreen/Menu/eyeR/ColorButton" to="CreatorScreen/Menu/Skeleton/eyeR" method="_on_color_button_pressed"]
+[connection signal="color_changed" from="CreatorScreen/Menu/eyeR/EyeRColorButton" to="CreatorScreen/Menu/Skeleton/eyeR" method="_on_color_button_color_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/shirt/CollectionButton" to="CreatorScreen/Menu/Skeleton/shirt" method="_on_collection_button_pressed"]
 [connection signal="pressed" from="CreatorScreen/Menu/shirt/ColorButton" to="CreatorScreen/Menu/Skeleton/shirt" method="_on_color_button_pressed"]
+[connection signal="color_changed" from="CreatorScreen/Menu/shirt/ShirtColorButton" to="CreatorScreen/Menu/Skeleton/shirt" method="_on_color_button_color_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/pants/CollectionButton" to="CreatorScreen/Menu/Skeleton/pants" method="_on_collection_button_pressed"]
-[connection signal="pressed" from="CreatorScreen/Menu/pants/ColorButton" to="CreatorScreen/Menu/Skeleton/pants" method="_on_color_button_pressed"]
+[connection signal="color_changed" from="CreatorScreen/Menu/pants/PantsColorButton" to="CreatorScreen/Menu/Skeleton/pants" method="_on_color_button_color_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/shoes/CollectionButton" to="CreatorScreen/Menu/Skeleton/shoes" method="_on_collection_button_pressed"]
-[connection signal="pressed" from="CreatorScreen/Menu/shoes/ColorButton" to="CreatorScreen/Menu/Skeleton/shoes" method="_on_color_button_pressed"]
+[connection signal="color_changed" from="CreatorScreen/Menu/shoes/ShoesColorButton" to="CreatorScreen/Menu/Skeleton/shoes" method="_on_color_button_color_changed"]
 [connection signal="pressed" from="CreatorScreen/Menu/ConfirmButton" to="." method="_on_confirm_button_pressed"]
