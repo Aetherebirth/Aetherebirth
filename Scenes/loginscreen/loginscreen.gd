@@ -7,10 +7,15 @@ extends Control
 @onready var create_username_input = $RegisterInputs/Username
 @onready var create_password_input = $RegisterInputs/Password
 @onready var create_password_confirm_input = $RegisterInputs/PasswordConfirm
+@onready var register_button = $RegisterInputs/Register
+@onready var back_button = $RegisterInputs/Back
+
+@onready var login_inputs = $LoginInputs
+@onready var register_inputs = $RegisterInputs
 
 func _ready():
-	$LoginInputs.show()
-	$RegisterInputs.hide()
+	login_inputs.show()
+	register_inputs.hide()
 	Gateway.disconnected.connect(func():login_button.disabled = false)
 
 func _on_login_pressed():
@@ -20,9 +25,9 @@ func _on_login_pressed():
 	else:
 		login_button.disabled = true
 		var username = username_input.text
-		var pasword = password_input.text
+		var password : String = password_input.text
 		print("Attempt to login")
-		Gateway.connectToServer(self, username, pasword, false)
+		Gateway.connectToServer(self, username, password.sha256_text(), false)
 		#$LoginTimeout.start()
 
 func _on_login_timeout():
@@ -41,9 +46,9 @@ func _on_register_pressed():
 	elif create_password_input.text.length() <= 6:
 		print("Password must contain at least 7 characters")
 	else:
-		$RegisterInputs/Register.disabled = true
-		$RegisterInputs/Back.disabled = true
-		Gateway.connectToServer(self, create_username_input.text, create_password_input.text, true)
+		register_button.disabled = true
+		back_button.disabled = true
+		Gateway.connectToServer(self, create_username_input.text, create_password_input.text.sha256_text(), true)
 
 
 
@@ -51,10 +56,10 @@ func _on_skip_pressed():
 	get_tree().change_scene_to_file("res://Scenes/character_selector/character_creator.tscn")
 
 func _on_switch_to_register_pressed():
-	$LoginInputs.hide()
-	$RegisterInputs.show()
+	login_inputs.hide()
+	register_inputs.show()
 
 func _on_switch_to_login_pressed():
-	$LoginInputs.show()
-	$RegisterInputs.hide()
+	login_inputs.show()
+	register_inputs.hide()
 

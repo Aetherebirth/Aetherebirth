@@ -105,6 +105,7 @@ func ReturnLoginRequest(player_id, results, token):
 func ReturnRegisterRequest(message):
 	print(message)
 	print("Register results received")
+	smapi.disconnect_peer(1)
 	smapi.connected_to_server.disconnect(_on_connection_succeed)
 	smapi.server_disconnected.disconnect(_on_connection_disconnect)
 	smapi.connection_failed.disconnect(_on_connection_fail)
@@ -114,7 +115,10 @@ func ReturnRegisterRequest(message):
 		print("Username already exists")
 	elif(message==3):
 		print("Welcome !") 
-	smapi.disconnect_peer(1)
+		loginscreen.register_inputs.hide()
+		loginscreen.login_inputs.show()
+	loginscreen.back_button.disabled = false
+	loginscreen.register_button.disabled = false
 
 
 func peer_connected(id: int) -> void:
