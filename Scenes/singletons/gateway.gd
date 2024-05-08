@@ -19,6 +19,7 @@ var dtls_options = TLSOptions.client(cert)
 
 var username
 var password
+var register
 
 func _ready() -> void:
 	pass
@@ -28,10 +29,11 @@ func _process(_delta):
 		return
 	smapi.poll()
 	
-func connectToServer(screen, _username, _password):
+func connectToServer(screen, _username, _password, _register):
 	loginscreen = screen
 	smapi = SceneMultiplayer.new()
 	var gateway_peer = ENetMultiplayerPeer.new()
+	register = _register
 	
 	var address = default_ip
 	if OS.has_feature("editor") and use_localhost_in_editor:
@@ -62,7 +64,10 @@ func _on_connection_fail():
 	
 func _on_connection_succeed() -> void:
 	print("Connected to gateway")
-	LoginRequest()
+	if(register):
+		RegisterRequest()
+	else:
+		LoginRequest()
 	
 func _on_connection_disconnect():
 	print("Disconnected from login server")
@@ -75,9 +80,16 @@ func LoginRequest():
 	username = ""
 	password = ""
 
+@rpc("any_peer", "reliable")
+func RegisterRequest():
+	print("Requesting register from gateway")
+	RegisterRequest.rpc_id(1, username, password)
+	username = ""
+	password = ""
+
 @rpc("authority", "call_remote", "reliable")
 func ReturnLoginRequest(player_id, results, token):
-	print("results received")
+	print("Login results received")
 	smapi.connected_to_server.disconnect(_on_connection_succeed)
 	smapi.server_disconnected.disconnect(_on_connection_disconnect)
 	smapi.connection_failed.disconnect(_on_connection_fail)
@@ -89,6 +101,20 @@ func ReturnLoginRequest(player_id, results, token):
 		print("Please provide correct username and password")
 	disconnected.emit()
 
+@rpc("authority", "call_remote", "reliable")
+func ReturnRegisterRequest(message):
+	print(message)
+	print("Register results received")
+	smapi.connected_to_server.disconnect(_on_connection_succeed)
+	smapi.server_disconnected.disconnect(_on_connection_disconnect)
+	smapi.connection_failed.disconnect(_on_connection_fail)
+	if(message == 1):
+		print("Failed to create account")
+	elif(message==2):
+		print("Username already exists")
+	elif(message==3):
+		print("Welcome !") 
+	smapi.disconnect_peer(1)
 
 
 func peer_connected(id: int) -> void:
