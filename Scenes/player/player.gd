@@ -9,11 +9,6 @@ class_name Player
 
 @onready var _move_direction := Vector2.ZERO
 
-## Sync properties
-@export var _position: Vector2
-@export var _direction: Vector2 = Vector2.ZERO
-@export var _strong_direction: Vector2 = Vector2.ZERO
-
 # Player skin and name
 @onready var body = $Skeleton/body
 @onready var eyeL = $Skeleton/eyeL

@@ -4,7 +4,7 @@ class_name CameraController
 var _anchor: CharacterBody2D
 var _offset: Vector2
 		
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not _anchor: return
 	var target_position := _anchor.global_position + _offset
 	global_position = target_position

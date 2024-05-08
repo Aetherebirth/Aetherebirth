@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7vsfjqwx1gd4"]
+[gd_scene load_steps=6 format=3 uid="uid://c7vsfjqwx1gd4"]
 
 [ext_resource type="Script" path="res://Scenes/main/connection.gd" id="1_hlrxf"]
 [ext_resource type="PackedScene" uid="uid://2ne27phhv0kl" path="res://Scenes/user_data/user_data_manager.tscn" id="3_rwvlu"]
-[ext_resource type="PackedScene" uid="uid://cvl4jsitsxp0u" path="res://Scenes/online_ui/ui.tscn" id="4_fvou2"]
 [ext_resource type="PackedScene" uid="uid://ciqrpd5675boy" path="res://Scenes/player/player.tscn" id="5_wb2xi"]
 [ext_resource type="PackedScene" uid="uid://dp3quo5hkpksc" path="res://Scenes/world/world.tscn" id="6_84o0i"]
 
@@ -29,10 +28,3 @@ script = SubResource("GDScript_rb767")
 [node name="World" parent="." instance=ExtResource("6_84o0i")]
 
 [node name="Player" parent="World" instance=ExtResource("5_wb2xi")]
-
-[node name="Online_UI" parent="." instance=ExtResource("4_fvou2")]
-layout_mode = 1
-hide_ui_and_connect = false
-
-[connection signal="connect_client" from="Online_UI" to="Connection" method="start_client"]
-[connection signal="start_server" from="Online_UI" to="Connection" method="start_server"]

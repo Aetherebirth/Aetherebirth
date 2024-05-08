@@ -1,4 +1,4 @@
 extends CharacterBody2D
 
-func MovePlayer(position):
-	global_position = position
+func MovePlayer(_position):
+	global_position = _position

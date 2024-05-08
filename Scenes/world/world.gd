@@ -6,6 +6,9 @@ extends Node2D
 @onready var chunk_manager
 
 var last_world_state = 0
+var world_state_buffer = []
+
+const interpolation_offset = 100
 
 var player_spawn = preload("res://Scenes/player/player_template.tscn")
 
@@ -18,14 +21,13 @@ func start_chunk_manager():
 func _process(delta):
 	if chunk_manager:
 		chunk_manager._process(delta)
-	pass
 
 
-func SpawnNewPlayer(player_id, position):
+func SpawnNewPlayer(player_id, _position):
 	print("Player %d spawned !" % player_id)
 	if not get_node("Players").has_node(str(player_id)) and player_id!=multiplayer.get_unique_id():
 		var new_player = player_spawn.instantiate()
-		new_player.position = position
+		new_player.position = _position
 		new_player.name = str(player_id)
 		get_node("Players").add_child(new_player)
 
@@ -34,19 +36,30 @@ func DespawnPlayer(player_id):
 	get_node("Players/%d" % player_id).queue_free()
 
 func UpdateWorldState(world_state):
-	# Buffer
-	# Interpolation
-	# Extrapolation
-	# Rubber Banding
 	if world_state["T"] > last_world_state:
 		last_world_state = world_state["T"]
-		world_state.erase("T") # We will need this later for inter/extrapolation, but not now
+		world_state_buffer.append(world_state)
 
-		world_state.erase(multiplayer.get_unique_id()) # Erase this player's entry, may need this later for anti-e
-		for player_id in world_state.keys():
+func _physics_process(_delta):
+	var render_time = int(Time.get_unix_time_from_system()*1000) - interpolation_offset
+	if(world_state_buffer.size()>1):
+		while world_state_buffer.size() > 2 and render_time > world_state_buffer[1].T:
+			world_state_buffer.pop_front()
+		var interpolation_factor = float(
+			render_time - world_state_buffer[0].T
+		) / float(world_state_buffer[1].T - world_state_buffer[0].T)
+		for player_id in world_state_buffer[1].keys():
+			if str(player_id)=="T":
+				continue
+			if player_id == multiplayer.get_unique_id():
+				continue
+			if not world_state_buffer[0].has(player_id):
+				continue
 			if get_node("Players").has_node(str(player_id)):
-				get_node("Players/%d" % player_id).MovePlayer(world_state[player_id]["P"])
+				var new_position = lerp(world_state_buffer[0][player_id]["P"], world_state_buffer[1][player_id]["P"], interpolation_factor)
+				get_node("Players/%d" % player_id).MovePlayer(new_position)
 			else:
-				print("spawning player")
-				SpawnNewPlayer(player_id, world_state[player_id]["P"])
+				print("Spawning player %d"%player_id)
+				SpawnNewPlayer(player_id, world_state_buffer[1][player_id]["P"])
+			
 
