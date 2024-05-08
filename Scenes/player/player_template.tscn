@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://ddvpe40uedl77" path="res://assets/sprites/player/hair/hair1.png" id="13_76rbd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sr337"]
-font_size = 24
+font_size = 12
 font_color = Color(1, 1, 1, 0.701961)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7fhl"]
