@@ -48,6 +48,16 @@ func ReturnTokenVerificationResults(result):
 	print("Received token verification results: "+str(result))
 	# Switch to selector or back to login
 
+@rpc("authority", "call_remote", "reliable")
+func SpawnNewPlayer(player_id, position):
+	if(multiplayer.get_unique_id()==player_id):
+		pass
+	else:
+		get_node("/root/Game/World").SpawnNewPlayer(player_id, position)
+	
+@rpc("authority", "call_remote", "reliable")
+func DespawnPlayer(player_id):
+	get_node("/root/Game/World").DespawnPlayer(player_id)
 
 func _connection_failed() -> void:
 	print("Connection to game server failed")

@@ -14,7 +14,6 @@ class_name Player
 @export var sync_delta_max := 0.2
 
 @onready var _camera_controller: CameraController = $CameraController
-@onready var _synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 
 @onready var _move_direction := Vector2.ZERO
 @onready var _last_strong_direction := Vector2.ZERO
@@ -33,7 +32,6 @@ class_name Player
 @onready var pants = $Skeleton/pants
 @onready var shoes = $Skeleton/shoes
 @onready var hair = $Skeleton/hair
-@onready var name_label = $Nickname/HBoxContainer/Nickname
 @onready var animation_player = $AnimationPlayer
 
 var position_before_sync: Vector2
@@ -44,17 +42,10 @@ var sync_delta: float
 
 func _ready() -> void:
 	initialize_player()
-	if is_multiplayer_authority():
-		_camera_controller.setup(self)
-	else:
-		_synchronizer.delta_synchronized.connect(on_synchronized)
-		_synchronizer.synchronized.connect(on_synchronized)
-		on_synchronized()
+	_camera_controller.setup(self)
 
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority(): interpolate_client(delta); return
-	
 	_move_direction = _get_input() * delta * move_speed
 	
 	# To not orient quickly to the last input, we save a last strong direction,
@@ -91,8 +82,6 @@ func _physics_process(delta: float) -> void:
 	var epsilon := 0.001
 	if delta_position.length() < epsilon and velocity.length() > epsilon:
 		global_position += get_wall_normal() * 0.1
-	
-	set_sync_properties()
 
 func initialize_player():
 	body.texture = Global.body_collection[Global.selected_body]
@@ -115,23 +104,6 @@ func initialize_player():
 
 	hair.texture = Global.hair_collection[Global.selected_hair]
 	hair.modulate = Global.hair_color
-	
-	name_label.text =Global.player_name
-
-func set_sync_properties() -> void:
-	_position = position
-	_velocity = velocity
-	_direction = _move_direction
-	_strong_direction = _last_strong_direction
-
-
-func on_synchronized() -> void:
-	velocity = _velocity
-	position_before_sync = position
-	
-	var sync_time_ms = Time.get_ticks_msec()
-	sync_delta = clampf(float(sync_time_ms - last_sync_time_ms) / 1000, 0, sync_delta_max)
-	last_sync_time_ms = sync_time_ms
 
 
 func interpolate_client(delta: float) -> void:

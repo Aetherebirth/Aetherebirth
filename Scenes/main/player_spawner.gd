@@ -16,16 +16,12 @@ func _ready() -> void:
 	despawned.connect(on_despawned)
 
 
-func create_player(id: int):
-	if not multiplayer.is_server(): return
-	
-	var spawn_position = Vector2.ZERO#spawn_points.get_spawn_position()
-	spawn([id, spawn_position])
-	print("Player %d spawned at " % [id] + str(spawn_position))
+func create_player(id: int, position: Vector2):
+	spawn([id, position])
+	print("Player %d spawned at " % [id] + str(position))
 
 
 func destroy_player(id: int):
-	if not multiplayer.is_server(): return
 	get_node(spawn_path).get_node(str(id)).queue_free()
 	
 	player_despawned.emit(id)
