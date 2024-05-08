@@ -14,7 +14,8 @@ func _ready():
 	pass
 
 func ConnectToServer():
-	get_tree().change_scene_to_file("res://Scenes/character_selector/character_creator.tscn")
+	get_tree().change_scene_to_file("res://Scenes/main/game.tscn")
+	#get_tree().change_scene_to_file("res://Scenes/character_selector/character_creator.tscn")
 	var network = ENetMultiplayerPeer.new()
 	print("Connecting to the server !")
 	network.create_client(default_ip,default_port)
@@ -47,6 +48,8 @@ func ReturnToken(_token):
 func ReturnTokenVerificationResults(result):
 	print("Received token verification results: "+str(result))
 	# Switch to selector or back to login
+	if(result):
+		get_node("/root/Game/World/Player").set_physics_process(true)
 
 @rpc("authority", "call_remote", "reliable")
 func SpawnNewPlayer(player_id, position):
@@ -58,6 +61,19 @@ func SpawnNewPlayer(player_id, position):
 @rpc("authority", "call_remote", "reliable")
 func DespawnPlayer(player_id):
 	get_node("/root/Game/World").DespawnPlayer(player_id)
+
+
+@rpc("any_peer", "call_remote", "unreliable")
+func SendPlayerState(player_state):
+	SendPlayerState.rpc_id(1, player_state)
+
+
+@rpc("any_peer", "call_remote", "unreliable")
+func SendWorldState(world_state):
+	get_node("/root/Game/World").UpdateWorldState(world_state)
+
+
+
 
 func _connection_failed() -> void:
 	print("Connection to game server failed")

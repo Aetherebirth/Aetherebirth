@@ -50,12 +50,12 @@ var hair_color = Color(0.82, 0.82, 0.82)
 
 
 # Selected values
-var selected_body = ""
-var selected_eyeL = ""
-var selected_eyeR = ""
-var selected_shirt = ""
-var selected_pants = ""
-var selected_shoes = ""
-var selected_hair = ""
+var selected_body = "1"
+var selected_eyeL = "1"
+var selected_eyeR = "1"
+var selected_shirt = "1"
+var selected_pants = "1"
+var selected_shoes = "1"
+var selected_hair = "1"
 
 var player_name = ""
