@@ -21,20 +21,16 @@ offset_bottom = 250.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Server" type="TextEdit" parent="ChatContainer/TabContainer"]
+[node name="Server" type="RichTextLabel" parent="ChatContainer/TabContainer"]
 layout_mode = 2
-editable = false
-context_menu_enabled = false
-wrap_mode = 1
-scroll_smooth = true
+bbcode_enabled = true
+scroll_following = true
 
-[node name="Squad" type="TextEdit" parent="ChatContainer/TabContainer"]
+[node name="Squad" type="RichTextLabel" parent="ChatContainer/TabContainer"]
 visible = false
 layout_mode = 2
-editable = false
-context_menu_enabled = false
-wrap_mode = 1
-scroll_smooth = true
+bbcode_enabled = true
+scroll_following = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChatContainer"]
 layout_mode = 2

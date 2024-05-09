@@ -17,14 +17,14 @@ func add_message(author_id: int, message: String, tab: String):
 		author_name = GameServer.players[author_id].username
 	else:
 		return;
-	chat_box[tab].text += "\n[%s] %s"%[author_name, message]
+	chat_box[tab].append_text("\n[%s] %s"%[author_name, message])
 
 func show_text(text: String, tab: String):
 	if(tab=="all"):
 		for tab_name in chat_box.keys():
-			chat_box[tab_name].text += "\n%s"%text
+			chat_box[tab_name].append_text("\n%s"%text)
 	else:
-		chat_box[tab].text += "\n%s"%text
+		chat_box[tab].append_text("\n%s"%text)
 
 var tabs = ["server", "squad"]
 
