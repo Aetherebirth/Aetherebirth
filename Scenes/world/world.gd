@@ -23,14 +23,14 @@ func _process(delta):
 		chunk_manager._process(delta)
 
 
-func SpawnNewPlayer(player_id, _position, data):
+func SpawnNewPlayer(player_id, _position):
 	print("Player %d spawned !" % player_id)
 	if not get_node("Players").has_node(str(player_id)) and player_id!=multiplayer.get_unique_id():
 		var new_player = player_spawn.instantiate()
 		new_player.position = _position
 		new_player.name = str(player_id)
-		new_player.SetName(data.username)
 		get_node("Players").add_child(new_player)
+		GameServer.AskPlayerData(player_id)
 
 func DespawnPlayer(player_id):
 	print("Player %d despawned" % player_id)
@@ -63,7 +63,7 @@ func _physics_process(_delta):
 					get_node("Players/%d" % player_id).MovePlayer(new_position)
 				else:
 					print("Spawning player %d"%player_id)
-					SpawnNewPlayer(player_id, world_state_buffer[2][player_id].P, world_state_buffer[2][player_id].D)
+					SpawnNewPlayer(player_id, world_state_buffer[2][player_id].P)
 		elif(render_time > world_state_buffer[1].T): # We have no future world state
 			var extrapolation_factor = float(
 				render_time - world_state_buffer[0].T

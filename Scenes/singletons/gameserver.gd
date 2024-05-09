@@ -15,6 +15,7 @@ var client_clock = 0
 var decimal_collector : float = 0
 var delta_latency = 0
 
+var players = {}
 
 func _physics_process(delta):
 	client_clock += int(delta*1000) + delta_latency
@@ -65,11 +66,11 @@ func ReturnTokenVerificationResults(result):
 		get_node("/root/Game/World/Player").set_physics_process(true)
 
 @rpc("authority", "call_remote", "reliable")
-func SpawnNewPlayer(player_id, position, data):
+func SpawnNewPlayer(player_id, position):
 	if(multiplayer.get_unique_id()==player_id):
 		pass
 	else:
-		get_node("/root/Game/World").SpawnNewPlayer(player_id, position, data)
+		get_node("/root/Game/World").SpawnNewPlayer(player_id, position)
 	
 @rpc("authority", "call_remote", "reliable")
 func DespawnPlayer(player_id):
@@ -132,3 +133,15 @@ func ReturnLatency(client_time):
 
 func _disconnected_from_server() -> void:
 	print("Disconnected from game server")
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func AskPlayerData(player_id):
+	AskPlayerData.rpc_id(1, player_id)
+
+@rpc("authority", "call_remote", "reliable")
+func ReceivePlayerData(player_id, data):
+	players[player_id] = data
+	var remote_player = get_node("/root/Game/World/Players/%s"%player_id)
+	remote_player.data = data
+	remote_player.SetName(data.username)

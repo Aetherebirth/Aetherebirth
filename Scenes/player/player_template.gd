@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var data = {}
+
 func MovePlayer(_position):
 	global_position = _position
 
