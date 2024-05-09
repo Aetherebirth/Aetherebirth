@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/online_ui/chat.gd" id="1_nhbh7"]
 
 [node name="Chat" type="Control"]
+texture_filter = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,10 +17,20 @@ layout_mode = 0
 offset_right = 300.0
 offset_bottom = 250.0
 
-[node name="ChatBox" type="TextEdit" parent="ChatContainer"]
+[node name="TabContainer" type="TabContainer" parent="ChatContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Server" type="TextEdit" parent="ChatContainer/TabContainer"]
+layout_mode = 2
 editable = false
+context_menu_enabled = false
+
+[node name="Squad" type="TextEdit" parent="ChatContainer/TabContainer"]
+visible = false
+layout_mode = 2
+editable = false
+context_menu_enabled = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChatContainer"]
 layout_mode = 2
@@ -32,4 +43,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 text = "Send"
 
+[connection signal="active_tab_rearranged" from="ChatContainer/TabContainer" to="." method="_on_tab_container_active_tab_rearranged"]
+[connection signal="text_submitted" from="ChatContainer/HBoxContainer/ChatInput" to="." method="_on_chat_input_text_submitted"]
 [connection signal="pressed" from="ChatContainer/HBoxContainer/SendButton" to="." method="_on_send_button_pressed"]

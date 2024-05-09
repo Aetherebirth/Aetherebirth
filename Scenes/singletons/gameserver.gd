@@ -149,9 +149,9 @@ func ReceivePlayerData(player_id, data):
 
 ## Chat system
 @rpc("any_peer", "call_remote", "reliable")
-func SendChatMessage(message):
-	SendChatMessage.rpc_id(1, message)
+func SendChatMessage(message, tab):
+	SendChatMessage.rpc_id(1, message, tab)
 @rpc("authority", "call_remote", "reliable")
-func BroadcastChatMessage(player_id, message: String):
+func BroadcastChatMessage(player_id: int, message: String, tab: String):
 	print("%s:%s"%[str(player_id), message])
-	get_node("/root/Game/World/Player/CameraController/Chat").add_message(player_id, message)
+	get_node("/root/Game/World/Player/CameraController/Chat").add_message(player_id, message, tab)
