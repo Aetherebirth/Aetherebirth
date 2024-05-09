@@ -65,11 +65,11 @@ func ReturnTokenVerificationResults(result):
 		get_node("/root/Game/World/Player").set_physics_process(true)
 
 @rpc("authority", "call_remote", "reliable")
-func SpawnNewPlayer(player_id, position):
+func SpawnNewPlayer(player_id, position, data):
 	if(multiplayer.get_unique_id()==player_id):
 		pass
 	else:
-		get_node("/root/Game/World").SpawnNewPlayer(player_id, position)
+		get_node("/root/Game/World").SpawnNewPlayer(player_id, position, data)
 	
 @rpc("authority", "call_remote", "reliable")
 func DespawnPlayer(player_id):
