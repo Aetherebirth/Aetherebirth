@@ -25,12 +25,16 @@ size_flags_vertical = 3
 layout_mode = 2
 editable = false
 context_menu_enabled = false
+wrap_mode = 1
+scroll_smooth = true
 
 [node name="Squad" type="TextEdit" parent="ChatContainer/TabContainer"]
 visible = false
 layout_mode = 2
 editable = false
 context_menu_enabled = false
+wrap_mode = 1
+scroll_smooth = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChatContainer"]
 layout_mode = 2
