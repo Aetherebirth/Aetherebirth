@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://ciqrpd5675boy"]
+[gd_scene load_steps=34 format=3 uid="uid://ciqrpd5675boy"]
 
 [ext_resource type="Script" path="res://Scenes/player/player.gd" id="1_pdbxc"]
+[ext_resource type="Shader" path="res://assets/shaders/silhouette.gdshader" id="2_u8xx4"]
 [ext_resource type="Script" path="res://Scenes/player/cameracontroller.gd" id="4_4nf07"]
 [ext_resource type="Script" path="res://Scenes/player/camera.gd" id="5_17a44"]
 [ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="6_y2nmv"]
@@ -11,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://8pskuo8pv8sn" path="res://assets/sprites/player/pants/pants1.png" id="11_hu6la"]
 [ext_resource type="Texture2D" uid="uid://dw0tmireiw4tw" path="res://assets/sprites/player/shoes/shoes1.png" id="12_0rqtq"]
 [ext_resource type="Texture2D" uid="uid://ddvpe40uedl77" path="res://assets/sprites/player/hair/hair1.png" id="13_ni05e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4goit"]
+shader = ExtResource("2_u8xx4")
+shader_parameter/silouette_color = Color(0, 0, 0, 0.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7fhl"]
 atlas = ExtResource("6_y2nmv")
@@ -316,6 +321,10 @@ y_sort_enabled = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_pdbxc")
+
+[node name="SilhouetteSprite" type="Sprite2D" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_4goit")
 
 [node name="CameraController" type="Node2D" parent="."]
 script = ExtResource("4_4nf07")

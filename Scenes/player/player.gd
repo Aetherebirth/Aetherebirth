@@ -18,6 +18,7 @@ class_name Player
 @onready var shoes = $Skeleton/shoes
 @onready var hair = $Skeleton/hair
 @onready var animation_player = $AnimationPlayer
+@onready var _silhouette_sprite: Sprite2D = $SilhouetteSprite
 
 var player_state
 
@@ -25,6 +26,14 @@ func _ready() -> void:
 	initialize_player()
 	_camera_controller.setup(self)
 	set_physics_process(false)
+	#_silhouette_sprite.texture = texture
+	#_silhouette_sprite.offset = offset
+	#_silhouette_sprite.flip_h = flip_h
+	#_silhouette_sprite.hframes = hframes
+	#_silhouette_sprite.vframes = vframes
+	#_silhouette_sprite.frame = frame
+
+
 
 
 func _physics_process(delta: float) -> void:
@@ -84,3 +93,19 @@ func _get_input() -> Vector2:
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	return raw_input
 
+func _set(property: StringName, value: Variant) -> bool:
+	if is_instance_valid(_silhouette_sprite):
+		match property:
+			"texture":
+				_silhouette_sprite.texture = value
+			"offset":
+				_silhouette_sprite.offset = value
+			"flip_h":
+				_silhouette_sprite.flip_h = value
+			"hframes":
+				_silhouette_sprite.hframes = value
+			"vframes":
+				_silhouette_sprite.vframes = value
+			"frame":
+				_silhouette_sprite.frame = value
+	return false
