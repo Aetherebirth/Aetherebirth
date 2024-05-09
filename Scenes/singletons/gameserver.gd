@@ -155,3 +155,8 @@ func SendChatMessage(message, tab):
 func BroadcastChatMessage(player_id: int, message: String, tab: String):
 	print("%s:%s"%[str(player_id), message])
 	get_node("/root/Game/World/Player/CameraController/Chat").add_message(player_id, message, tab)
+
+@rpc("authority", "call_remote", "reliable")
+func ShowChatText(text: String):
+	get_node("/root/Game/World/Player/CameraController/Chat").show_text(text, "all")
+	
