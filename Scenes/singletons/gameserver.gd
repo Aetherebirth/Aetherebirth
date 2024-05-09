@@ -145,3 +145,13 @@ func ReceivePlayerData(player_id, data):
 	var remote_player = get_node("/root/Game/World/Players/%s"%player_id)
 	remote_player.data = data
 	remote_player.SetName(data.username)
+
+
+## Chat system
+@rpc("any_peer", "call_remote", "reliable")
+func SendChatMessage(message):
+	SendChatMessage.rpc_id(1, message)
+@rpc("authority", "call_remote", "reliable")
+func BroadcastChatMessage(player_id, message: String):
+	print("%s:%s"%[str(player_id), message])
+	get_node("/root/Game/World/Player/CameraController/Chat").add_message(player_id, message)
