@@ -160,3 +160,11 @@ func BroadcastChatMessage(player_id: int, message: String, tab: String):
 func ShowChatText(text: String):
 	get_node("/root/Game/World/Player/CameraController/Chat").show_text(text, "all")
 	
+
+@rpc("authority", "call_remote", "reliable")
+func SendGlobalChatMessage(username: String, escaped_message: String):
+	get_node("/root/Game/World/Player/CameraController/Chat").add_username_message(username, escaped_message, "global")
+
+@rpc("authority", "call_remote", "reliable")
+func SendGuildChatMessage(username: String, escaped_message: String):
+	get_node("/root/Game/World/Player/CameraController/Chat").add_username_message(username, escaped_message, "guild")

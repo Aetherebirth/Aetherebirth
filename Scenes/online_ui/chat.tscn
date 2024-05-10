@@ -21,7 +21,13 @@ offset_bottom = 250.0
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Server" type="RichTextLabel" parent="ChatContainer/TabContainer"]
+[node name="Global" type="RichTextLabel" parent="ChatContainer/TabContainer"]
+layout_mode = 2
+bbcode_enabled = true
+scroll_following = true
+
+[node name="Guild" type="RichTextLabel" parent="ChatContainer/TabContainer"]
+visible = false
 layout_mode = 2
 bbcode_enabled = true
 scroll_following = true

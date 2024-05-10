@@ -1,7 +1,8 @@
 extends Control
 
 @onready var chat_box = {
-	"server": $ChatContainer/TabContainer/Server,
+	"global": $ChatContainer/TabContainer/Global,
+	"guild": $ChatContainer/TabContainer/Guild,
 	"squad": $ChatContainer/TabContainer/Squad,
 }
 @onready var chat_input = $ChatContainer/HBoxContainer/ChatInput
@@ -19,6 +20,10 @@ func add_message(author_id: int, message: String, tab: String):
 		return;
 	chat_box[tab].append_text("\n[%s] %s"%[author_name, message])
 
+
+func add_username_message(username: String, message: String, tab: String):
+	chat_box[tab].append_text("\n[%s] %s"%[username, message])
+
 func show_text(text: String, tab: String):
 	if(tab=="all"):
 		for tab_name in chat_box.keys():
@@ -26,8 +31,8 @@ func show_text(text: String, tab: String):
 	else:
 		chat_box[tab].append_text("\n%s"%text)
 
-var tabs = ["server", "squad"]
 
+@onready var tabs = chat_box.keys()
 func _on_send_button_pressed():
 	send_message()
 func _on_chat_input_text_submitted(new_text):
