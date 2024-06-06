@@ -43,7 +43,7 @@ func UpdateWorldState(world_state):
 		world_state_buffer.append(world_state)
 
 func _physics_process(_delta):
-	var render_time = int(Time.get_unix_time_from_system()*1000) - interpolation_offset
+	var render_time = GameServer.client_clock - interpolation_offset
 	if(world_state_buffer.size()>1):
 		while world_state_buffer.size() > 2 and render_time > world_state_buffer[2].T:
 			world_state_buffer.pop_front()

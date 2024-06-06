@@ -25,7 +25,6 @@ func _physics_process(delta):
 		client_clock += 1
 		decimal_collector -= 1.00
 	
-	
 
 func ConnectToServer():
 	get_tree().change_scene_to_file("res://Scenes/main/game.tscn")
@@ -95,18 +94,24 @@ func _connection_failed() -> void:
 func _connected_to_server() -> void:
 	print("Connected to game server")
 	#FetchPlayerStats()
-	var timer = Timer.new()
-	timer.wait_time = .5
-	timer.autostart = true
-	timer.connect("timeout", DetermineLatency)
-	add_child(timer)
+	var latencyTimer = Timer.new()
+	latencyTimer.wait_time = .5
+	latencyTimer.autostart = true
+	latencyTimer.connect("timeout", FetchServerTime.bind(client_clock))
+	var timeTimer = Timer.new()
+	timeTimer.wait_time = 5
+	timeTimer.autostart = true
+	timeTimer.connect("timeout", DetermineLatency)
+	add_child(latencyTimer)
+	add_child(timeTimer)
+	
 
 @rpc("any_peer", "call_remote", "reliable")
 func FetchServerTime(client_time):
 	FetchServerTime.rpc_id(1, int(Time.get_unix_time_from_system()*1000))
 
 @rpc("authority", "call_remote", "reliable")
-func ReturnServerTime(player_id, server_time, client_time):
+func ReturnServerTime(server_time, client_time):
 	latency = (int(Time.get_unix_time_from_system()*1000) - client_time) / 2
 	client_clock = server_time + latency
 
