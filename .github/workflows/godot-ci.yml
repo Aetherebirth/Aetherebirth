@@ -58,6 +58,8 @@ jobs:
           path: build/linux
 
   indev-release:
+    name: Automatic indev deployment
+    steps:
     - name: Prerelease with latest tag 
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
