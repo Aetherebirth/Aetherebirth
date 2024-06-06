@@ -28,10 +28,10 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Windows Desktop x86_64" ./build/windows/$EXPORT_NAME-x86_64-windows.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: $EXPORT_NAME-x86_64-windows
-          path: build/windows
+          path: build/windows/$EXPORT_NAME-x86_64-windows.exe
       - name: Prerelease with latest tag 
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -63,10 +63,10 @@ jobs:
           cd $PROJECT_PATH
           godot --headless --verbose --export-release "Linux/X11 x86_64" ./build/linux/$EXPORT_NAME-x86_64-linux.x86_64
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: $EXPORT_NAME-x86_64-linux
-          path: build/linux
+          path: build/linux/$EXPORT_NAME-x86_64-linux.x86_64
       - name: Prerelease with latest tag 
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
