@@ -34,7 +34,7 @@ jobs:
 
   export-linux:
     name: Linux Export
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: barichello/godot-ci:4.2.2
     steps:
@@ -59,6 +59,7 @@ jobs:
 
   indev-release:
     name: Automatic indev deployment
+    runs-on: ubuntu-latest
     steps:
     - name: Prerelease with latest tag 
       uses: "marvinpinto/action-automatic-releases@latest"
