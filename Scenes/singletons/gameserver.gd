@@ -26,12 +26,12 @@ func _physics_process(delta):
 		decimal_collector -= 1.00
 	
 
-func ConnectToServer():
+func ConnectToServer(address:String=default_ip):
 	get_tree().change_scene_to_file("res://Scenes/main/game.tscn")
 	#get_tree().change_scene_to_file("res://Scenes/character_selector/character_creator.tscn")
 	var network = ENetMultiplayerPeer.new()
-	print("Connecting to the server !")
-	network.create_client(default_ip,default_port)
+	print("Connecting to the server - %s" %address)
+	network.create_client(address,default_port)
 	self.multiplayer.multiplayer_peer = network
 	
 	self.multiplayer.connected_to_server.connect(_connected_to_server)

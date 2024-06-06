@@ -21,6 +21,8 @@ var username
 var password
 var register
 
+var server_ip
+
 func _ready() -> void:
 	pass
 	
@@ -29,15 +31,14 @@ func _process(_delta):
 		return
 	smapi.poll()
 	
-func connectToServer(screen, _username, _password, _register):
+func connectToServer(screen, _username, _password, _register, _address=default_ip, server_ip_override="127.0.0.1"):
 	loginscreen = screen
 	smapi = SceneMultiplayer.new()
 	var gateway_peer = ENetMultiplayerPeer.new()
 	register = _register
 	
-	var address = default_ip
-	if OS.has_feature("editor") and use_localhost_in_editor:
-		address = "127.0.0.1"
+	server_ip = server_ip_override
+	var address = _address
 	
 	var err = gateway_peer.create_client(address, default_port)
 	#gateway_peer.host.dtls_client_setup("aetherebirth_server.aetherebirth.fr", dtls_options)
@@ -96,7 +97,7 @@ func ReturnLoginRequest(player_id, results, token):
 	if results == true:
 		print("Connecting to server...")
 		GameServer.token = token
-		GameServer.ConnectToServer()
+		GameServer.ConnectToServer(server_ip)
 	else:
 		print("Please provide correct username and password")
 	disconnected.emit()

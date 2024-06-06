@@ -1,17 +1,21 @@
 extends Control
 
-@onready var username_input = $LoginInputs/Username
-@onready var password_input = $LoginInputs/Password
-@onready var login_button = $LoginInputs/Login
+@onready var username_input: LineEdit = $LoginInputs/Username
+@onready var password_input: LineEdit = $LoginInputs/Password
+@onready var login_button: Button = $LoginInputs/Login
 
-@onready var create_username_input = $RegisterInputs/Username
-@onready var create_password_input = $RegisterInputs/Password
-@onready var create_password_confirm_input = $RegisterInputs/PasswordConfirm
-@onready var register_button = $RegisterInputs/Register
-@onready var back_button = $RegisterInputs/Back
+@onready var create_username_input: LineEdit = $RegisterInputs/Username
+@onready var create_password_input: LineEdit = $RegisterInputs/Password
+@onready var create_password_confirm_input: LineEdit = $RegisterInputs/PasswordConfirm
+@onready var register_button: Button = $RegisterInputs/Register
+@onready var back_button: Button = $RegisterInputs/Back
 
-@onready var login_inputs = $LoginInputs
-@onready var register_inputs = $RegisterInputs
+@onready var login_inputs: VBoxContainer = $LoginInputs
+@onready var register_inputs: VBoxContainer = $RegisterInputs
+
+
+@onready var server_adress: LineEdit = $ServerAdress
+@onready var gateway_adress: LineEdit = $GatewayAdress
 
 func _ready():
 	login_inputs.show()
@@ -27,7 +31,7 @@ func _on_login_pressed():
 		var username = username_input.text
 		var password : String = password_input.text
 		print("Attempt to login")
-		Gateway.connectToServer(self, username, password.sha256_text(), false)
+		Gateway.connectToServer(self, username, password.sha256_text(), false, gateway_adress.text, server_adress.text)
 		#$LoginTimeout.start()
 
 func _on_login_timeout():
@@ -48,7 +52,7 @@ func _on_register_pressed():
 	else:
 		register_button.disabled = true
 		back_button.disabled = true
-		Gateway.connectToServer(self, create_username_input.text, create_password_input.text.sha256_text(), true)
+		Gateway.connectToServer(self, create_username_input.text, create_password_input.text.sha256_text(), true, gateway_adress.text, server_adress.text)
 
 
 
