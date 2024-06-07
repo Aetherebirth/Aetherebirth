@@ -1,9 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvl4jsitsxp0u"]
-
-[ext_resource type="Script" path="res://Scenes/online_ui/ui.gd" id="1_n1aa6"]
-[ext_resource type="Script" path="res://Scenes/online_ui/player_panel_container.gd" id="4_0te8w"]
-[ext_resource type="Resource" uid="uid://rclnl7v8k722" path="res://Scenes/user_data/user_data_events.res" id="5_tmjbr"]
-[ext_resource type="PackedScene" uid="uid://dpre6ebljycx4" path="res://Scenes/online_ui/player_panel.tscn" id="6_lta7j"]
+[gd_scene format=3 uid="uid://y4vu3viys613"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -17,8 +12,6 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_n1aa6")
-hide_ui_and_connect = true
 
 [node name="MainMenu" type="Control" parent="."]
 layout_mode = 1
@@ -89,8 +82,5 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="InGameUI/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-script = ExtResource("4_0te8w")
-user_data_events = ExtResource("5_tmjbr")
-player_panel = ExtResource("6_lta7j")
 
 [connection signal="pressed" from="MainMenu/Connection/Client" to="." method="connect_client_emit"]

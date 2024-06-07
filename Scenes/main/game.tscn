@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7vsfjqwx1gd4"]
+[gd_scene load_steps=4 format=3 uid="uid://c7vsfjqwx1gd4"]
 
 [ext_resource type="Script" path="res://Scenes/main/connection.gd" id="1_hlrxf"]
-[ext_resource type="PackedScene" uid="uid://2ne27phhv0kl" path="res://Scenes/user_data/user_data_manager.tscn" id="3_rwvlu"]
 [ext_resource type="PackedScene" uid="uid://ciqrpd5675boy" path="res://Scenes/player/player.tscn" id="5_wb2xi"]
 [ext_resource type="PackedScene" uid="uid://dp3quo5hkpksc" path="res://Scenes/world/world.tscn" id="6_84o0i"]
-
-[sub_resource type="GDScript" id="GDScript_rb767"]
-script/source = "extends Node2D
-"
 
 [node name="Game" type="Control"]
 y_sort_enabled = true
@@ -19,11 +14,8 @@ script = ExtResource("1_hlrxf")
 max_clients = 200
 use_localhost_in_editor = true
 
-[node name="UserDataManager" parent="." instance=ExtResource("3_rwvlu")]
-
 [node name="Players" type="Node2D" parent="."]
 y_sort_enabled = true
-script = SubResource("GDScript_rb767")
 
 [node name="World" parent="." instance=ExtResource("6_84o0i")]
 

@@ -1,8 +1,6 @@
-[gd_scene load_steps=33 format=3 uid="uid://bpo0k2vgy6i8w"]
+[gd_scene load_steps=31 format=3 uid="uid://bpo0k2vgy6i8w"]
 
 [ext_resource type="Script" path="res://Scenes/player/player_template.gd" id="1_js8kv"]
-[ext_resource type="Script" path="res://Scenes/online_ui/floating_nickname.gd" id="2_nf4bg"]
-[ext_resource type="Resource" uid="uid://rclnl7v8k722" path="res://Scenes/user_data/user_data_events.res" id="3_yphb5"]
 [ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="6_5px77"]
 [ext_resource type="Texture2D" uid="uid://djv1byov750hr" path="res://assets/sprites/player/body/body1.png" id="7_3opmo"]
 [ext_resource type="Texture2D" uid="uid://d2uberku7qua3" path="res://assets/sprites/player/eyeL/eyeL1.png" id="8_g2tj3"]
@@ -321,15 +319,11 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_js8kv")
 
-[node name="Nickname" type="Control" parent="." node_paths=PackedStringArray("label", "anchor")]
+[node name="Nickname" type="Control" parent="."]
 z_index = 99
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
-script = ExtResource("2_nf4bg")
-user_data_events = ExtResource("3_yphb5")
-label = NodePath("HBoxContainer/Nickname")
-anchor = NodePath("../AnimatedSprite2D")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Nickname"]
 layout_mode = 1
