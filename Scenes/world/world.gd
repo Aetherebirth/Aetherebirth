@@ -25,17 +25,17 @@ func _process(delta):
 
 func SpawnNewPlayer(player_id, _position):
 	print("Player %d spawned !" % player_id)
-	if not get_node("Players").has_node(str(player_id)) and player_id!=multiplayer.get_unique_id():
+	if not get_node("Entities/Players").has_node(str(player_id)) and player_id!=multiplayer.get_unique_id():
 		var new_player = player_spawn.instantiate()
 		new_player.position = _position
 		new_player.name = str(player_id)
-		get_node("Players").add_child(new_player)
+		get_node("Entities/Players").add_child(new_player)
 		GameServer.AskPlayerData(player_id)
 
 func DespawnPlayer(player_id):
 	print("Player %d despawned" % player_id)
 	await get_tree().create_timer(0.2).timeout
-	get_node("Players/%d" % player_id).queue_free()
+	get_node("Entities/Players/%d" % player_id).queue_free()
 
 func UpdateWorldState(world_state):
 	if world_state["T"] > last_world_state:
@@ -58,9 +58,9 @@ func _physics_process(_delta):
 					continue
 				if not world_state_buffer[1].has(player_id):
 					continue
-				if get_node("Players").has_node(str(player_id)):
+				if get_node("Entities/Players").has_node(str(player_id)):
 					var new_position = lerp(world_state_buffer[1][player_id].P, world_state_buffer[2][player_id].P, interpolation_factor)
-					get_node("Players/%d" % player_id).MoveTo(new_position)
+					get_node("Entities/Players/%d" % player_id).MoveTo(new_position)
 				else:
 					print("Spawning player %d"%player_id)
 					SpawnNewPlayer(player_id, world_state_buffer[2][player_id].P)
@@ -75,10 +75,10 @@ func _physics_process(_delta):
 					continue
 				if not world_state_buffer[0].has(player_id):
 					continue
-				if get_node("Players").has_node(str(player_id)):
+				if get_node("Entities/Players").has_node(str(player_id)):
 					var position_delta = (world_state_buffer[1][player_id].P - world_state_buffer[0][player_id].P)
 					var new_position = world_state_buffer[1][player_id].P + (position_delta*extrapolation_factor)
-					get_node("Players/%d" % player_id).MoveTo(new_position)
+					get_node("Entities/Players/%d" % player_id).MoveTo(new_position)
 				
 			
 

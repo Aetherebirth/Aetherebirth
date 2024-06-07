@@ -28,4 +28,6 @@ y_sort_enabled = true
 
 [node name="DayNightCycle" type="AnimationPlayer" parent="."]
 
-[node name="Players" type="Node2D" parent="."]
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Players" type="Node2D" parent="Entities"]
