@@ -60,7 +60,7 @@ func _physics_process(_delta):
 					continue
 				if get_node("Players").has_node(str(player_id)):
 					var new_position = lerp(world_state_buffer[1][player_id].P, world_state_buffer[2][player_id].P, interpolation_factor)
-					get_node("Players/%d" % player_id).MovePlayer(new_position)
+					get_node("Players/%d" % player_id).MoveTo(new_position)
 				else:
 					print("Spawning player %d"%player_id)
 					SpawnNewPlayer(player_id, world_state_buffer[2][player_id].P)
@@ -78,7 +78,7 @@ func _physics_process(_delta):
 				if get_node("Players").has_node(str(player_id)):
 					var position_delta = (world_state_buffer[1][player_id].P - world_state_buffer[0][player_id].P)
 					var new_position = world_state_buffer[1][player_id].P + (position_delta*extrapolation_factor)
-					get_node("Players/%d" % player_id).MovePlayer(new_position)
+					get_node("Players/%d" % player_id).MoveTo(new_position)
 				
 			
 

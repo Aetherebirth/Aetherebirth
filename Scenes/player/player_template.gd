@@ -1,9 +1,4 @@
-extends CharacterBody2D
-
-var data = {}
-
-func MovePlayer(_position):
-	global_position = _position
+extends Entity
 
 func SetName(_name: String):
 	$Nickname/HBoxContainer/Nickname.text = _name
