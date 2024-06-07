@@ -14,10 +14,15 @@ extends Control
 @onready var register_inputs: VBoxContainer = $RegisterInputs
 
 
-@onready var server_adress: LineEdit = $ServerAdress
-@onready var gateway_adress: LineEdit = $GatewayAdress
+@onready var server_address: LineEdit = $ServerAddress
+@onready var gateway_address: LineEdit = $GatewayAddress
+
+var config = ConfigFile.new()
 
 func _ready():
+	config.load("user://network.cfg")
+	server_address.text = config.get_value("network", "last_server_address", "127.0.0.1")
+	gateway_address.text = config.get_value("network", "last_gateway_address", "127.0.0.1")
 	login_inputs.show()
 	register_inputs.hide()
 	Gateway.disconnected.connect(func():login_button.disabled = false)
@@ -27,11 +32,14 @@ func _on_login_pressed():
 		# Popup
 		print("Please provide a valid username and password !")
 	else:
+		config.set_value("network", "last_server_address", server_address.text)
+		config.set_value("network", "last_gateway_address", gateway_address.text)
+		config.save("user://network.cfg")
 		login_button.disabled = true
 		var username = username_input.text
 		var password : String = password_input.text
 		print("Attempt to login")
-		Gateway.connectToServer(self, username, password.sha256_text(), false, gateway_adress.text, server_adress.text)
+		Gateway.connectToServer(self, username, password.sha256_text(), false, gateway_address.text, server_address.text)
 		#$LoginTimeout.start()
 
 func _on_login_timeout():
@@ -50,9 +58,12 @@ func _on_register_pressed():
 	elif create_password_input.text.length() <= 6:
 		print("Password must contain at least 7 characters")
 	else:
+		config.set_value("network", "last_server_address", server_address.text)
+		config.set_value("network", "last_gateway_address", gateway_address.text)
+		config.save("user://network.cfg")
 		register_button.disabled = true
 		back_button.disabled = true
-		Gateway.connectToServer(self, create_username_input.text, create_password_input.text.sha256_text(), true, gateway_adress.text, server_adress.text)
+		Gateway.connectToServer(self, create_username_input.text, create_password_input.text.sha256_text(), true, gateway_address.text, server_address.text)
 
 
 

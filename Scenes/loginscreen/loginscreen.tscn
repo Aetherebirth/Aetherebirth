@@ -140,7 +140,7 @@ text = "Skip auth (debug)"
 wait_time = 10.0
 one_shot = true
 
-[node name="ServerAdress" type="LineEdit" parent="."]
+[node name="ServerAddress" type="LineEdit" parent="."]
 layout_mode = 0
 offset_left = 744.0
 offset_top = 384.0
@@ -149,7 +149,7 @@ offset_bottom = 416.0
 text = "127.0.0.1"
 placeholder_text = "Server Adress"
 
-[node name="GatewayAdress" type="LineEdit" parent="."]
+[node name="GatewayAddress" type="LineEdit" parent="."]
 layout_mode = 0
 offset_left = 744.0
 offset_top = 424.0
