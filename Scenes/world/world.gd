@@ -51,33 +51,31 @@ func _physics_process(_delta):
 			var interpolation_factor = float(
 				render_time - world_state_buffer[1].T
 			) / float(world_state_buffer[2].T - world_state_buffer[1].T)
-			for player_id in world_state_buffer[2].keys():
+			for player_id in world_state_buffer[2].players.keys():
 				if str(player_id)=="T":
 					continue
 				if player_id == multiplayer.get_unique_id():
 					continue
-				if not world_state_buffer[1].has(player_id):
+				if not world_state_buffer[1].players.has(player_id):
 					continue
 				if get_node("Entities/Players").has_node(str(player_id)):
-					var new_position = lerp(world_state_buffer[1][player_id].P, world_state_buffer[2][player_id].P, interpolation_factor)
+					var new_position = lerp(world_state_buffer[1].players[player_id].P, world_state_buffer[2].players[player_id].P, interpolation_factor)
 					get_node("Entities/Players/%d" % player_id).MoveTo(new_position)
 				else:
 					print("Spawning player %d"%player_id)
-					SpawnNewPlayer(player_id, world_state_buffer[2][player_id].P)
+					SpawnNewPlayer(player_id, world_state_buffer[2].players[player_id].P)
 		elif(render_time > world_state_buffer[1].T): # We have no future world state
 			var extrapolation_factor = float(
 				render_time - world_state_buffer[0].T
 			) / float(world_state_buffer[1].T - world_state_buffer[0].T) - 1.00
-			for player_id in  world_state_buffer[1].keys():
-				if str(player_id)=="T":
-					continue
+			for player_id in world_state_buffer[1].players.keys():
 				if player_id == multiplayer.get_unique_id():
 					continue
-				if not world_state_buffer[0].has(player_id):
+				if not world_state_buffer[0].players.has(player_id):
 					continue
 				if get_node("Entities/Players").has_node(str(player_id)):
-					var position_delta = (world_state_buffer[1][player_id].P - world_state_buffer[0][player_id].P)
-					var new_position = world_state_buffer[1][player_id].P + (position_delta*extrapolation_factor)
+					var position_delta = (world_state_buffer[1].players[player_id].P - world_state_buffer[0].players[player_id].P)
+					var new_position = world_state_buffer[1].players[player_id].P + (position_delta*extrapolation_factor)
 					get_node("Entities/Players/%d" % player_id).MoveTo(new_position)
 				
 			
