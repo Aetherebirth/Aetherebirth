@@ -11,7 +11,8 @@ var world_state_buffer = []
 const interpolation_offset = 100
 
 var spawn = {
-	"player": preload("res://Scenes/player/player_template.tscn")
+	"player": preload("res://Scenes/entity/player/player_template.tscn"),
+	"npc": preload("res://Scenes/entity/npc/npc_template.tscn")
 }
 
 func _ready():
@@ -34,7 +35,7 @@ func SpawnNewEntity(entity_id: String, entity_type: String, _position: Vector2):
 		print(entity_type)
 		get_node("Entities/%s"%entity_type).add_child(new_entity)
 		if entity_type == "player":
-			GameServer.AskPlayerData(entity_id)
+			GameServer.AskEntityData(entity_type, entity_id)
 			print("Asked player data")
 
 func DespawnPlayer(player_id):
@@ -73,7 +74,7 @@ func _physics_process(_delta):
 						get_node("Entities/%s/%s" % [entity_type, entity_id]).MoveTo(new_position)
 					else:
 						print("Spawning entity %s"%entity_id)
-						SpawnNewEntity(entity_id, entity_type, world_state_buffer[2].entities.player[entity_id].P)
+						SpawnNewEntity(entity_id, entity_type, world_state_buffer[2].entities[entity_type][entity_id].P)
 					
 		elif(render_time > world_state_buffer[1].T): # We have no future world state
 			var extrapolation_factor = float(

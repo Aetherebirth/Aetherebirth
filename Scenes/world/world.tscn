@@ -31,3 +31,5 @@ y_sort_enabled = true
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="player" type="Node2D" parent="Entities"]
+
+[node name="npc" type="Node2D" parent="Entities"]

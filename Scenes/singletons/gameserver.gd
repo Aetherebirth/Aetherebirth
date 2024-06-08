@@ -141,15 +141,19 @@ func _disconnected_from_server() -> void:
 
 
 @rpc("any_peer", "call_remote", "reliable")
-func AskPlayerData(player_id):
-	AskPlayerData.rpc_id(1, player_id)
+func AskEntityData(entity_type, entity_id):
+	AskEntityData.rpc_id(1, entity_type, entity_id)
 
 @rpc("authority", "call_remote", "reliable")
-func ReceivePlayerData(player_id, data):
-	players[player_id] = data
-	var remote_player = get_node("/root/Game/World/Entities/player/%s"%player_id)
-	remote_player.data = data
-	remote_player.SetName(data.username)
+func ReceiveEntityData(entity_type, entity_id, data):
+	if(entity_type=="player"):
+		players[entity_id] = data
+		var remote_player = get_node("/root/Game/World/Entities/player/%s"%entity_id)
+		remote_player.data = data
+		remote_player.SetName(data.name)
+	elif(entity_type=="npc"):
+		var remote_entity = get_node("/root/Game/World/Entities/npc/%s"%entity_id)
+		remote_entity.SetName(data.name)
 
 
 ## Chat system

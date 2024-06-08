@@ -15,7 +15,7 @@ func add_message(author_id: int, message: String, tab: String):
 	elif(author_id==1):
 		author_name = "System"
 	elif(GameServer.players.keys().has(author_id)):
-		author_name = GameServer.players[author_id].username
+		author_name = GameServer.players[author_id].name
 	else:
 		return;
 	chat_box[tab].append_text("\n[%s] %s"%[author_name, message])
