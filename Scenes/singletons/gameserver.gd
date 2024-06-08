@@ -69,7 +69,7 @@ func SpawnNewPlayer(player_id, position):
 	if(multiplayer.get_unique_id()==player_id):
 		pass
 	else:
-		get_node("/root/Game/World").SpawnNewPlayer(player_id, position)
+		get_node("/root/Game/World").SpawnNewEntity(str(player_id), "player", position)
 	
 @rpc("authority", "call_remote", "reliable")
 func DespawnPlayer(player_id):
@@ -147,7 +147,7 @@ func AskPlayerData(player_id):
 @rpc("authority", "call_remote", "reliable")
 func ReceivePlayerData(player_id, data):
 	players[player_id] = data
-	var remote_player = get_node("/root/Game/World/Entities/Players/%s"%player_id)
+	var remote_player = get_node("/root/Game/World/Entities/player/%s"%player_id)
 	remote_player.data = data
 	remote_player.SetName(data.username)
 
