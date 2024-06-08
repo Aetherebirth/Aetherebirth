@@ -34,9 +34,8 @@ func SpawnNewEntity(entity_id: String, entity_type: String, _position: Vector2):
 		new_entity.name = str(entity_id)
 		print(entity_type)
 		get_node("Entities/%s"%entity_type).add_child(new_entity)
-		if entity_type == "player":
-			GameServer.AskEntityData(entity_type, entity_id)
-			print("Asked player data")
+		
+		GameServer.AskEntityData(entity_type, entity_id)
 
 func DespawnPlayer(player_id):
 	print("Player %d despawned" % player_id)
