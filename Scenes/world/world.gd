@@ -87,7 +87,7 @@ func _physics_process(_delta):
 				if get_node("Entities/player").has_node(str(player_id)):
 					var position_delta = (world_state_buffer[1].entities.player[player_id].P - world_state_buffer[0].entities.player[player_id].P)
 					var new_position = world_state_buffer[1].entities.player[player_id].P + (position_delta*extrapolation_factor)
-					get_node("Entities/player/%d" % player_id).MoveTo(new_position)
+					get_node("Entities/player/%s" % player_id).MoveTo(new_position)
 				
 			
 
