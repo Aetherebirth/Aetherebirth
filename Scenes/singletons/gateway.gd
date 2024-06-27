@@ -10,37 +10,37 @@ static var is_peer_connected: bool
 @export var default_ip: String = "127.0.0.1"
 @export var use_localhost_in_editor: bool
 
-@export var loginscreen: Control
+@export var loginscreen: LoginScreen
 
-var smapi: = SceneMultiplayer.new()
+var smapi: SceneMultiplayer = SceneMultiplayer.new()
 
-var cert = load("res://assets/certificate/Aetherebirth_server.crt")
-var dtls_options = TLSOptions.client(cert)
+var cert: X509Certificate = load("res://assets/certificate/Aetherebirth_server.crt")
+var dtls_options: TLSOptions = TLSOptions.client(cert)
 
-var username
-var password
-var register
+var username: String
+var password: String
+var register: bool
 
-var server_ip
+var server_ip: String
 
 func _ready() -> void:
 	pass
 	
-func _process(_delta):
+func _process(_delta: float) -> void:
 	if not smapi.has_multiplayer_peer():
 		return
 	smapi.poll()
-	
-func connectToServer(screen, _username, _password, _register, _address=default_ip, server_ip_override="127.0.0.1"):
+
+func connectToServer(screen: LoginScreen, _username: String, _password: String, _register: bool, _address:String=default_ip, server_ip_override:String="127.0.0.1") -> void:
 	loginscreen = screen
 	smapi = SceneMultiplayer.new()
-	var gateway_peer = ENetMultiplayerPeer.new()
+	var gateway_peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 	register = _register
 	
 	server_ip = server_ip_override
-	var address = _address
+	var address: String = _address
 	
-	var err = gateway_peer.create_client(address, default_port)
+	var err : Error = gateway_peer.create_client(address, default_port)
 	#gateway_peer.host.dtls_client_setup("aetherebirth_server.aetherebirth.fr", dtls_options)
 	if err != OK:
 		print("Cannot connect to gateway. Err: " + str(err))
@@ -58,7 +58,7 @@ func connectToServer(screen, _username, _password, _register, _address=default_i
 	smapi.server_disconnected.connect(_on_connection_disconnect)
 	smapi.connection_failed.connect(_on_connection_fail)
 
-func _on_connection_fail():
+func _on_connection_fail() -> void:
 	print("Failed to connect to login server")
 	print("\"Server offline\" pop-up")
 	disconnected.emit()
@@ -70,26 +70,26 @@ func _on_connection_succeed() -> void:
 	else:
 		LoginRequest()
 	
-func _on_connection_disconnect():
+func _on_connection_disconnect() -> void:
 	print("Disconnected from login server")
 	disconnected.emit()
 
 @rpc("any_peer", "reliable")
-func LoginRequest():
+func LoginRequest() -> void:
 	print("Requesting login from gateway")
 	LoginRequest.rpc_id(1, username, password)
 	username = ""
 	password = ""
 
 @rpc("any_peer", "reliable")
-func RegisterRequest():
+func RegisterRequest() -> void:
 	print("Requesting register from gateway")
 	RegisterRequest.rpc_id(1, username, password)
 	username = ""
 	password = ""
 
 @rpc("authority", "call_remote", "reliable")
-func ReturnLoginRequest(player_id, results, token):
+func ReturnLoginRequest(results: bool, token: String) -> void:
 	print("Login results received")
 	smapi.connected_to_server.disconnect(_on_connection_succeed)
 	smapi.server_disconnected.disconnect(_on_connection_disconnect)
@@ -103,8 +103,7 @@ func ReturnLoginRequest(player_id, results, token):
 	disconnected.emit()
 
 @rpc("authority", "call_remote", "reliable")
-func ReturnRegisterRequest(message):
-	print(message)
+func ReturnRegisterRequest(message: int) -> void:
 	print("Register results received")
 	smapi.disconnect_peer(1)
 	smapi.connected_to_server.disconnect(_on_connection_succeed)

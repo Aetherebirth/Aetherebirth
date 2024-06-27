@@ -12,17 +12,17 @@ static var is_peer_connected: bool
 
 
 func _ready() -> void:
-	connected.connect(func(): Connection.is_peer_connected = true)
-	disconnected.connect(func(): Connection.is_peer_connected = false)
+	connected.connect(func()->void: Connection.is_peer_connected = true)
+	disconnected.connect(func()->void: Connection.is_peer_connected = false)
 	disconnected.connect(disconnect_all)
 
-func start_client(ip, port) -> void:
-	var address = ip
+func start_client(ip: String, port: int) -> void:
+	var address: String = ip
 	if OS.has_feature("editor") and use_localhost_in_editor:
 		address = "127.0.0.1"
 	
-	var peer = ENetMultiplayerPeer.new()
-	var err = peer.create_client(address, port)
+	var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
+	var err: Error = peer.create_client(address, port)
 	if err != OK:
 		print("Cannot start client. Err: " + str(err))
 		disconnected.emit()

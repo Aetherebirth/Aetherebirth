@@ -1,81 +1,73 @@
-[gd_scene load_steps=35 format=3 uid="uid://ciqrpd5675boy"]
+[gd_scene load_steps=31 format=3 uid="uid://bpo0k2vgy6i8w"]
 
-[ext_resource type="Script" path="res://Scenes/entity/player/player.gd" id="1_pdbxc"]
-[ext_resource type="Shader" path="res://assets/shaders/silhouette.gdshader" id="2_u8xx4"]
-[ext_resource type="Script" path="res://Scenes/entity/player/cameracontroller.gd" id="4_4nf07"]
-[ext_resource type="Script" path="res://Scenes/entity/player/camera.gd" id="5_17a44"]
-[ext_resource type="PackedScene" uid="uid://todqitbbpsq2" path="res://Scenes/online_ui/chat.tscn" id="5_ru1qw"]
-[ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="6_y2nmv"]
-[ext_resource type="Texture2D" uid="uid://djv1byov750hr" path="res://assets/sprites/player/body/body1.png" id="7_wvrsv"]
-[ext_resource type="Texture2D" uid="uid://d2uberku7qua3" path="res://assets/sprites/player/eyeL/eyeL1.png" id="8_fy1yi"]
-[ext_resource type="Texture2D" uid="uid://bd7v8cahvi5x7" path="res://assets/sprites/player/eyeR/eyeR1.png" id="9_qmxkr"]
-[ext_resource type="Texture2D" uid="uid://dcbu0jpu2xg0v" path="res://assets/sprites/player/shirt/shirt1.png" id="10_7ggrc"]
-[ext_resource type="Texture2D" uid="uid://8pskuo8pv8sn" path="res://assets/sprites/player/pants/pants1.png" id="11_hu6la"]
-[ext_resource type="Texture2D" uid="uid://dw0tmireiw4tw" path="res://assets/sprites/player/shoes/shoes1.png" id="12_0rqtq"]
-[ext_resource type="Texture2D" uid="uid://ddvpe40uedl77" path="res://assets/sprites/player/hair/hair1.png" id="13_ni05e"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4goit"]
-shader = ExtResource("2_u8xx4")
-shader_parameter/silouette_color = Color(0, 0, 0, 0.5)
+[ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="1_lfkvg"]
+[ext_resource type="Script" path="res://Scenes/entity/playerlikeentity/player/player_template.gd" id="1_yamkm"]
+[ext_resource type="Texture2D" uid="uid://djv1byov750hr" path="res://assets/sprites/player/body/body1.png" id="2_7yvck"]
+[ext_resource type="Texture2D" uid="uid://d2uberku7qua3" path="res://assets/sprites/player/eyeL/eyeL1.png" id="3_v4j1i"]
+[ext_resource type="Texture2D" uid="uid://bd7v8cahvi5x7" path="res://assets/sprites/player/eyeR/eyeR1.png" id="4_70gqa"]
+[ext_resource type="Texture2D" uid="uid://dcbu0jpu2xg0v" path="res://assets/sprites/player/shirt/shirt1.png" id="5_0s046"]
+[ext_resource type="Texture2D" uid="uid://8pskuo8pv8sn" path="res://assets/sprites/player/pants/pants1.png" id="6_8nr1o"]
+[ext_resource type="Texture2D" uid="uid://dw0tmireiw4tw" path="res://assets/sprites/player/shoes/shoes1.png" id="7_du8pe"]
+[ext_resource type="Texture2D" uid="uid://ddvpe40uedl77" path="res://assets/sprites/player/hair/hair1.png" id="8_0uby5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7fhl"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ofx5"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1k6d"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ccqx"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tpqe"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5en1f"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k74jh"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgbd2"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urha3"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ng06"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vv1f6"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nchbr"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6ho0"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3cbi"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n04ha"]
-atlas = ExtResource("6_y2nmv")
+atlas = ExtResource("1_lfkvg")
 region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ax11"]
@@ -316,33 +308,14 @@ _data = {
 "idle_down": SubResource("Animation_vcbo3")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["damageables"]]
+[sub_resource type="LabelSettings" id="LabelSettings_88bt7"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.701961)
+
+[node name="PlayerTemplate" type="CharacterBody2D" groups=["damageables"]]
 z_index = 1
 y_sort_enabled = true
-motion_mode = 1
-wall_min_slide_angle = 0.0
-script = ExtResource("1_pdbxc")
-
-[node name="SilhouetteSprite" type="Sprite2D" parent="."]
-z_index = 100
-material = SubResource("ShaderMaterial_4goit")
-
-[node name="CameraController" type="Node2D" parent="."]
-script = ExtResource("4_4nf07")
-
-[node name="Camera" type="Camera2D" parent="CameraController"]
-zoom = Vector2(3, 3)
-limit_smoothed = true
-position_smoothing_enabled = true
-rotation_smoothing_enabled = true
-script = ExtResource("5_17a44")
-
-[node name="Chat" parent="CameraController" instance=ExtResource("5_ru1qw")]
-offset_left = -192.0
-offset_top = -108.0
-offset_right = -192.0
-offset_bottom = -108.0
-scale = Vector2(0.25, 0.25)
+script = ExtResource("1_yamkm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -359,31 +332,31 @@ shape = SubResource("RectangleShape2D_840qo")
 [node name="Skeleton" type="Node2D" parent="."]
 
 [node name="body" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("7_wvrsv")
+texture = ExtResource("2_7yvck")
 hframes = 16
 
 [node name="eyeL" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("8_fy1yi")
+texture = ExtResource("3_v4j1i")
 hframes = 16
 
 [node name="eyeR" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("9_qmxkr")
+texture = ExtResource("4_70gqa")
 hframes = 16
 
 [node name="shirt" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("10_7ggrc")
+texture = ExtResource("5_0s046")
 hframes = 16
 
 [node name="pants" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("11_hu6la")
+texture = ExtResource("6_8nr1o")
 hframes = 16
 
 [node name="shoes" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("12_0rqtq")
+texture = ExtResource("7_du8pe")
 hframes = 16
 
 [node name="hair" type="Sprite2D" parent="Skeleton"]
-texture = ExtResource("13_ni05e")
+texture = ExtResource("8_0uby5")
 hframes = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -391,3 +364,31 @@ libraries = {
 "": SubResource("AnimationLibrary_mn87n")
 }
 speed_scale = 0.8
+
+[node name="Nickname" type="Control" parent="."]
+z_index = 99
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Nickname"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Nickname" type="Label" parent="Nickname/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Player One"
+label_settings = SubResource("LabelSettings_88bt7")
+horizontal_alignment = 1

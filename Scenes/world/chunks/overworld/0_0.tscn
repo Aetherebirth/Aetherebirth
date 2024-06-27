@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://77u3xk3lhp0t"]
+[gd_scene load_steps=2 format=3 uid="uid://77u3xk3lhp0t"]
 
 [ext_resource type="TileSet" uid="uid://0ndkcr2fctsd" path="res://assets/tilesets/main.tres" id="1_r1lrj"]
-[ext_resource type="Script" path="res://Scenes/world/spawn_points.gd" id="2_c0ur6"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -29,7 +28,3 @@ format = 2
 layer_0/name = "ground_decorations"
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(1441817, 1179649, 2, 983064, 1376257, 11, 1572893, 983041, 11, 131098, 983041, 11, 131089, 589825, 11, 524319, 65537, 0, 1769490, 65537, 0)
-
-[node name="SpawnPoints" type="Node2D" parent="."]
-position = Vector2(256, 256)
-script = ExtResource("2_c0ur6")

@@ -1,70 +1,70 @@
 [gd_scene load_steps=24 format=3 uid="uid://bckrjrfr3mh11"]
 
-[ext_resource type="Script" path="res://Scenes/entity/player/player_template.gd" id="1_0m43o"]
-[ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="2_ap6c3"]
+[ext_resource type="Script" path="res://Scenes/entity/playerlikeentity/npc/npc_template.gd" id="1_k7n0h"]
+[ext_resource type="Texture2D" uid="uid://ftmvsa1w2575" path="res://assets/sprites/prototype_player_sprite_sheet.png" id="1_ynv7j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sr337"]
 font_size = 12
 font_color = Color(1, 1, 1, 0.701961)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7fhl"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ofx5"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j1k6d"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ccqx"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1tpqe"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5en1f"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k74jh"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgbd2"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urha3"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(256, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ng06"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vv1f6"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nchbr"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g6ho0"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3cbi"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(416, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n04ha"]
-atlas = ExtResource("2_ap6c3")
+atlas = ExtResource("1_ynv7j")
 region = Rect2(448, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ax11"]
@@ -137,12 +137,10 @@ _data = {
 "idle_down": SubResource("Animation_vcbo3")
 }
 
-[node name="NpcTemplate" type="CharacterBody2D" groups=["damageables"]]
+[node name="NpcTemplate" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-motion_mode = 1
-wall_min_slide_angle = 0.0
-script = ExtResource("1_0m43o")
+script = ExtResource("1_k7n0h")
 
 [node name="Nickname" type="Control" parent="."]
 z_index = 99

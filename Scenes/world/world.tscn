@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp3quo5hkpksc"]
+[gd_scene load_steps=5 format=3 uid="uid://dp3quo5hkpksc"]
 
 [ext_resource type="Script" path="res://Scenes/world/world.gd" id="1_ad7vv"]
 [ext_resource type="Shader" path="res://assets/shaders/shadows.gdshader" id="2_rx4lm"]
+[ext_resource type="Script" path="res://Scenes/world/network_map.gd" id="3_hvlfv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p8ajr"]
 shader = ExtResource("2_rx4lm")
@@ -23,13 +24,10 @@ offset_right = 960.0
 offset_bottom = 592.0
 color = Color(1, 1, 1, 0)
 
-[node name="Maps" type="Node2D" parent="."]
+[node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true
+script = ExtResource("3_hvlfv")
 
 [node name="DayNightCycle" type="AnimationPlayer" parent="."]
 
 [node name="Entities" type="Node2D" parent="."]
-
-[node name="player" type="Node2D" parent="Entities"]
-
-[node name="npc" type="Node2D" parent="Entities"]
